@@ -78,8 +78,8 @@ Los datos del proyecto de Nacho (Yegro, 2021) serán usados como referencia para
 
 ## 6. Definiciones pendientes
 
-- **"Trabar" en una materia:** definición formal de cuándo se considera que un estudiante está "trabado" (¿N intentos? ¿tiempo sin inscribirse? ¿combinación?). Acordar con Eugenio y Denise.
-- Fuentes de datos disponibles y formatos reales (gestión con Eugenio y la universidad).
+- **"Trabar" en una materia:** definición formal de cuándo se considera que un estudiante está "trabado" (¿N intentos? ¿tiempo sin inscribirse? ¿combinación?). Acordar con el Lic. Eugenio Cálcena y la Lic. Denise Pari.
+- Fuentes de datos disponibles y formatos reales (gestión con el Lic. Cálcena y la universidad).
 - Modelo de privacidad: qué datos se pueden usar en el contexto del LLM y cuáles deben quedar anonimizados o fuera.
 - Stack tecnológico definitivo.
 
@@ -99,7 +99,7 @@ La diferencia fundamental es el paradigma: de un dashboard estático a una plata
 
 ## 8. Próximos pasos
 
-- [ ] Refinar definiciones pendientes con directores de carrera (Eugenio, Denise) y directora del seminario (Gabriela)
+- [ ] Refinar definiciones pendientes con directores de carrera (Lic. Eugenio Cálcena, Lic. Denise Pari) y directora del seminario (Dra. Gabriela Arévalo)
 - [ ] Evaluar stack tecnológico (LLM provider, vector store, framework web)
 - [ ] Definir modelo de privacidad y política de manejo de datos sensibles
 - [ ] Diseñar arquitectura de alto nivel
