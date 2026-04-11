@@ -2,11 +2,11 @@
 
 ## Proyecto Finisterre: Académika como plataforma web AI-first para seguimiento académico
 
-**Alumno:** Leandro Di Lorenzo Etchepare
-**Directora:** Dra. Gabriela Arévalo
-**Carrera:** Licenciatura en Informática
-**Departamento:** Ciencia y Tecnología — Universidad Nacional de Quilmes
-**Fecha:** abril 2026
+**Alumno:** Leandro Di Lorenzo Etchepare\
+**Directora:** Dra. Gabriela Arévalo\
+**Carrera:** Licenciatura en Informática\
+**Departamento:** Ciencia y Tecnología — Universidad Nacional de Quilmes\
+**Fecha:** abril 2026\
 **Estado:** En construcción
 
 ---
