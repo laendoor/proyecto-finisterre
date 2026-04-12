@@ -65,7 +65,7 @@ Diseñar, desarrollar y validar una plataforma web que permita a la dirección d
 2. Diseñar el modelo de dominio y la arquitectura del sistema, incluyendo el modelo de privacidad y ofuscación de datos sensibles.
 3. Desarrollar el pipeline de ingesta, ofuscación y normalización de datos provenientes del SIU Guaraní y fuentes complementarias.
 4. Desarrollar el motor analítico-determinístico con métricas académicas predefinidas (trayectorias estudiantiles, materias críticas, deserción, proyección de inscripciones).
-5. Desarrollar la interfaz conversacional basada en IA (RAG + LLM) integrada con la base de conocimiento académica.
+5. Desarrollar la interfaz conversacional basada en IA integrada con los datos académicos, evaluando y comparando dos enfoques: generación de consultas SQL desde lenguaje natural (Text-to-SQL) y recuperación semántica por similitud (RAG con embeddings).
 6. Desarrollar el frontend web con Panel Analítico e interfaz de chat.
 7. Realizar pruebas unitarias y de integración del sistema.
 8. Poner en producción dentro del entorno de la UNQ.
@@ -77,7 +77,7 @@ Diseñar, desarrollar y validar una plataforma web que permita a la dirección d
 
 El desarrollo se realizará con metodología iterativa e incremental. Cada fase produce un incremento funcional del sistema que puede ser evaluado y validado antes de avanzar a la siguiente.
 
-El trabajo se organiza en un **Preludio** de investigación y diseño, seguido de cinco fases de desarrollo y cierre denominadas con los títulos de la *Serie Fundación* de Isaac Asimov [^1]:
+El trabajo se organiza en un **Preludio** de investigación y diseño, seguido de cinco fases de desarrollo y un cierre, denominados con los títulos de la *Serie Fundación* de Isaac Asimov [^1]:
 
 **Preludio** — *Preludio a la Fundación*
 
@@ -101,19 +101,23 @@ El trabajo se organiza en un **Preludio** de investigación y diseño, seguido d
 
 **Fase 3** — *Segunda Fundación*
 
-- Base de conocimiento académica (embeddings, pgvector)
-- RAG: recuperación de información contextual sobre los datos cargados
-- Integración del LLM: interfaz conversacional Hari
+- Interfaz conversacional Hari: primera versión funcional basada en Text-to-SQL
+- El asistente genera consultas SQL desde lenguaje natural contra la base de datos académica
 - Gestión de fuentes (sources) y permisos por rol
 
 **Fase 4** — *Los límites de la Fundación*
 
-- Validación del sistema con las direcciones de carrera
-- Iteración basada en feedback
-- Migración a infraestructura de la UNQ
+- Incorporación de RAG con embeddings (pgvector) como segundo enfoque de Hari
+- Mejoras al pipeline Text-to-SQL a partir de los aprendizajes de Fase 3
 
 **Fase 5** — *Fundación y Tierra*
 
+- Evaluación comparativa de ambos enfoques (Text-to-SQL vs RAG) sobre un conjunto de consultas canónicas
+- Selección del enfoque definitivo o diseño híbrido según resultados
+
+**Cierre**
+
+- Validación del sistema con las direcciones de carrera; iteración final
 - Pruebas finales y estabilización
 - Documentación técnica y de usuario
 - Redacción y entrega del informe final
@@ -129,20 +133,22 @@ El trabajo se organiza en un **Preludio** de investigación y diseño, seguido d
 
 ## 7. Cronograma
 
-El proyecto inicia en **abril de 2026** y tiene una duración estimada de **16 semanas (~4 meses)** [^2]. La escritura del informe corre en paralelo con el desarrollo desde la aprobación del plan de trabajo.
+El proyecto inicia en **abril de 2026** y tiene una duración estimada de **20 semanas (~5 meses)** [^2]. La escritura del informe corre en paralelo con el desarrollo desde la aprobación del plan de trabajo.
 
 - **S1-S3 — abril 2026**
   - Preludio — *Preludio a la Fundación*
-- **S3-S6 — abril-mayo 2026**
+- **S3-S7 — abril-mayo 2026**
   - Fase 1 — *Fundación*
-- **S5-S9 — mayo 2026**
+- **S6-S10 — mayo-junio 2026**
   - Fase 2 — *Fundación e Imperio*
-- **S8-S12 — junio 2026**
+- **S10-S13 — julio 2026**
   - Fase 3 — *Segunda Fundación*
-- **S11-S14 — julio 2026**
+- **S12-S15 — julio-agosto 2026**
   - Fase 4 — *Los límites de la Fundación*
-- **S13-S16 — julio-agosto 2026**
+- **S15-S17 — agosto 2026**
   - Fase 5 — *Fundación y Tierra*
+- **S16-S20 — agosto-septiembre 2026**
+  - Cierre
 
 [^2]: Las semanas se solapan entre fases de forma deliberada — el inicio de cada fase no requiere que la anterior esté completamente cerrada.
 
