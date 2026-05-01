@@ -1,2 +1,14 @@
 # OS
 .DS_Store
+
+# LaTeX build artifacts
+plan-de-trabajo/*.aux
+plan-de-trabajo/*.bbl
+plan-de-trabajo/*.blg
+plan-de-trabajo/*.fdb_latexmk
+plan-de-trabajo/*.fls
+plan-de-trabajo/*.log
+plan-de-trabajo/*.out
+plan-de-trabajo/*.synctex.gz
+plan-de-trabajo/*.toc
+plan-de-trabajo/*.pdf

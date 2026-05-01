@@ -1,0 +1,546 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  spanish,
+]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{2} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{tocdepth}{3}
+\usepackage{tocloft}
+% Secciones (\section): negrita, sin puntos, nro de página en negrita
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsecdotsep}{\cftnodots}
+% Subsecciones (\subsection): normal, sin puntos
+\renewcommand{\cftsubsecdotsep}{\cftnodots}
+% Espaciado entre entradas
+\setlength{\cftbeforesecskip}{6pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\usepackage[authoryear,round]{natbib}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+
+\hypersetup{
+  pdftitle={Plan de Trabajo},
+  pdfauthor={Leandro Di Lorenzo Etchepare},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Plan de Trabajo\\[0.5em]
+\large Académika como plataforma web AI-first para seguimiento académico}
+\author{Leandro Di Lorenzo Etchepare}
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+\includegraphics[width=0.7\textwidth]{logo-unq.png}\\[2.5cm]
+{\LARGE\bfseries Plan de Trabajo}\\[1cm]
+{\Large Académika como plataforma web AI-first para seguimiento académico}\\[2.5cm]
+\textbf{Autor:}     Leandro J. Di Lorenzo Etchepare \\[0.4em]
+\textbf{Directora:} Dra.\ Gabriela B. Arévalo
+\vfill
+\textsc{Licenciatura en Informática}\\[0.3em]
+\textsc{Departamento de Ciencia y Tecnología}\\[0.3em]
+\textsc{Universidad Nacional de Quilmes}
+\vfill
+Abril, 2026
+\end{titlepage}
+
+\tableofcontents
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Introducción}\label{introducciuxf3n}
+
+Las instituciones educativas generan volúmenes crecientes de datos
+académicos (inscripciones, cursadas, aprobaciones, trayectorias) que en
+la práctica son difíciles de aprovechar. Los sistemas de gestión
+académica existentes, como el SIU Guaraní\footnote{\url{https://documentacion.siu.edu.ar/wiki/SIU-Guarani}},
+permiten el registro de los datos y el acceso a los mismos, pero provee pocas herramientas de análisis.
+Quienes toman decisiones sobre carreras y materias deben generarse herramientas de análisis
+ad-hoc con información muchas veces fragmentada o difícil de consultar en tiempo real.
+
+Esta problemática no es ajena a las carreras de informática del Departamento de Ciencia y Tecnología de la Universidad Nacional de
+Quilmes (DCyT-UNQ). Las carreras Licenciatura en Informática (LI) y Tecnicatura Universitaria en Programación Informática (TPI) concentran
+la matrícula más numerosa de la Universidad.
+Según Catálogos de datos abiertos del 
+Portal de Transparencia de la UNQ \citep{unq2025transparencia}, en 2024 la TPI registró 4.517 estudiantes
+(inscriptos + reinscriptos) y la LI 3.272, sumando 7.789 entre ambas.
+Esto es más del triple que la carrera de Contador Público, la tercera carrera más numerosa de la institución:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Carrera & Alumnos 2024 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{TPI} & \textbf{4.517} \\
+\textbf{LI} & \textbf{3.272} \\
+Contador Público & 2.493 \\
+Lic. en Educación (CCC) & 2.290 \\
+Lic. en Comercio Internacional & 1.801 \\
+\end{longtable}
+}
+
+El crecimiento ha sido sostenido y acelerado: en 2016 ambas carreras
+sumaban 1.121 estudiantes; en 2024, 7.789 --- casi siete veces más en
+ocho años. Sin embargo, los egresos no crecen al mismo ritmo: en 2024
+las dos carreras sumaron 55 egresados contra 3.040 nuevos inscriptos. La
+brecha entre quienes ingresan y quienes egresan es estructural y se
+amplía año a año, lo que convierte la gestión de trayectorias
+estudiantiles en un problema urgente que las herramientas disponibles
+hoy no permiten un análisis eficaz.
+
+En 2021, Juan Ignacio Yegro desarrolló como Seminario Final un prototipo
+avanzado de aplicación de seguimiento académico para estas
+carreras \citep{yegro2021}. Ese trabajo estableció un modelo de
+dominio sólido y un conjunto de métricas académicas relevantes, pero el
+sistema no llegó a ponerse en producción por falta de mantenimiento
+sostenido: sin recursos dedicados a su operación, el stack tecnológico
+quedó desactualizado antes de poder ser adoptado. El avance en
+inteligencia artificial ---en particular los modelos de lenguaje grandes
+(LLMs) y las técnicas de Retrieval-Augmented Generation (RAG)--- abre
+hoy la posibilidad de retomar ese trabajo, extenderlo y construir sobre
+sus cimientos una plataforma más potente y usable.
+
+Este plan de trabajo propone el diseño, desarrollo y validación de
+\textbf{Académika}: una plataforma web AI-first para el seguimiento
+académico, orientada a las
+direcciones y los equipos docente de las carreras de informática de la UNQ.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Motivación}\label{motivaciuxf3n}
+
+Las direcciones de carrera de la UNQ operan bajo tres tipos de momentos
+de decisión con características y necesidades de información distintas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Decisiones operativas}: mayormente relacionadas al período
+  de inscripciones (previas y posteriores). Requieren información rápida
+  y precisa sobre demanda y cupos, disponibilidad del equipo docente y
+  asignación de recursos.
+\item
+  \textbf{Decisiones de mediano plazo}: durante el armado de la
+  oferta académica. Requieren proyecciones y estimados de demanda por
+  materia para el cuatrimestre siguiente.
+\item
+  \textbf{Decisiones estratégicas}: durante el resto del
+  cuatrimestre. Permiten análisis más profundos sobre trayectorias
+  estudiantiles, deserción, rendimiento y planificación de largo plazo.
+\end{enumerate}
+
+La herramienta actual (SIU Guaraní) provee datos crudos pero no
+análisis. No existe una plataforma que permita a las direcciones de
+carrera explorar sus datos en lenguaje natural, detectar estudiantes en
+riesgo o anticipar situaciones críticas antes de que escalen.
+
+El volumen del problema justifica la inversión. Con 7.789 estudiantes en
+2024 \citep{unq2025transparencia}, LI y TPI son las carreras más grandes de la UNQ.
+Y la tasa de egreso es estructuralmente baja: en los últimos años
+la relación entre nuevos inscriptos y egresados no superó el 2\%:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+Año & Nuevos inscriptos & Egresados \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2019 & 910 & 22 \\
+2021 & 703 & 20 \\
+2022 & 1.281 & 28 \\
+2023 & 3.341 & 47 \\
+2024 & 3.040 & 55 \\
+\end{longtable}
+}
+
+La demanda de ingreso se multiplicó por más de tres entre 2022 y 2024
+pero los egresos crecen muy por debajo de esa proporción.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Estado del arte}\label{estado-del-arte}
+
+\subsection{Trabajos previos en la UNQ}\label{trabajos-previos-en-la-unq}
+
+El antecedente directo más relevante es el trabajo de Nacho \citet{yegro2021}, que
+desarrolló una aplicación de seguimiento académico para las carreras de
+informática de la UNQ con foco en métricas de trayectoria estudiantil y
+gestión de inscripciones. El presente trabajo toma de él el modelo de
+dominio (Alumno, Carrera, Materia, Plan de Estudios) y las métricas
+analíticas como punto de partida, y extiende el enfoque hacia una
+interfaz conversacional basada en IA.
+
+\subsection{Desarrollos similares en otras instituciones}\label{desarrollos-similares-en-otras-instituciones}
+
+{[}TODO: investigar y documentar --- sistemas de seguimiento académico
+en otras universidades, plataformas de analytics académico{]}
+
+\subsection{Aplicaciones de IA conversacional en contextos de análisis de
+datos}\label{aplicaciones-de-ia-conversacional-en-contextos-de-anuxe1lisis-de-datos}
+
+{[}TODO: documentar el estado del arte en herramientas AI-first para
+análisis de datos (NotebookLM, plataformas de BI conversacional),
+justificar el enfoque RAG sobre dashboards tradicionales{]}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Objetivos}\label{objetivos}
+
+\subsection{Objetivo general}\label{objetivo-general}
+
+Diseñar, desarrollar y validar una plataforma web que permita a la
+dirección de carreras y al equipo docente de la UNQ analizar, consultar
+y comprender la situación académica de estudiantes, materias y carreras
+mediante una interfaz conversacional basada en inteligencia artificial,
+con datos provenientes del SIU Guaraní y fuentes complementarias,
+orientada a la toma de decisiones en los distintos momentos del ciclo
+académico.
+
+\subsection{Objetivos específicos}\label{objetivos-especuxedficos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item Relevar los requerimientos funcionales y no funcionales de las
+  direcciones de carrera de LI y TPI.
+\item Diseñar el modelo de dominio y la arquitectura del sistema, incluyendo
+  el modelo de privacidad y ofuscación de datos sensibles.
+\item Desarrollar el pipeline de ingesta, ofuscación y normalización de
+  datos provenientes del SIU Guaraní y fuentes complementarias.
+\item Desarrollar el motor analítico-determinístico con métricas académicas
+  predefinidas (trayectorias estudiantiles, materias críticas,
+  deserción, proyección de inscripciones).
+\item Desarrollar LLM-Hari, la interfaz conversacional de Académika, con grounding estricto sobre las fuentes provistas: Text-to-SQL para consultas sobre datos estructurados del SIU Guaraní, y RAG documental para consultas sobre documentos académicos institucionales; evaluar comparativamente ambas estrategias según tipo de consulta.
+\item Desarrollar el frontend web con panel analítico e interfaz de chat.
+\item Realizar pruebas unitarias y de integración del sistema.
+\item Poner en producción dentro del entorno de la UNQ.
+\item Documentar el sistema y redactar el informe final.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Metodología}\label{metodologuxeda}
+
+El desarrollo se realizará con metodología iterativa e incremental. Cada
+fase produce un incremento funcional del sistema que puede ser evaluado
+y validado antes de avanzar a la siguiente.
+
+El trabajo se organiza en siete fases, denominadas con los títulos de la \emph{Serie Fundación} de Isaac Asimov\footnote{Asimov, Isaac. \emph{Serie Fundación}. \url{https://es.wikipedia.org/wiki/Serie_de_la_Fundaci\'on}}:
+
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}cll@{}}
+\toprule
+\textbf{Fase} & \textbf{Libro} & \textbf{Contenido} \\
+\midrule
+1 & \emph{Preludio a la Fundación}     & Setup académico: relevamiento, diseño, plan de trabajo \\
+2 & \emph{Hacia la Fundación}          & App base, deploy inicial \\
+3 & \emph{Fundación}                   & Ingesta de datos, motor analítico, panel analítico \\
+4 & \emph{Fundación e Imperio}         & Chatbot LLM: primera versión conversacional \\
+5 & \emph{Segunda Fundación}           & Text-to-SQL en Chatbot LLM \\
+6 & \emph{Los límites de la Fundación} & RAG documental y orquestación \\
+7 & \emph{Fundación y Tierra}          & Evaluación comparativa, cierre y defensa \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\subsection{Principio de diseño: grounding}\label{principio-de-diseno-grounding}
+
+El chatbot LLM responde exclusivamente a partir de las fuentes provistas ---
+datos académicos importados del SIU Guaraní y documentos institucionales ---
+sin recurrir al conocimiento general del modelo de lenguaje.
+Esta restricción, análoga al diseño de NotebookLM\footnote{\url{https://notebooklm.google.com}},
+reduce el riesgo de respuestas incorrectas (\emph{alucinaciones}) en un dominio donde la precisión es crítica.
+El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
+
+\begin{itemize}
+  \item en Fase 4, el chatbot LLM opera con prompt estricto y datos estructurados en contexto;
+  \item en Fase 5, Text-to-SQL garantiza grounding estructural ejecutando consultas SQL directamente contra la base de datos;
+  \item en Fase 6, RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}} documental extiende ese grounding a documentos académicos no estructurados.
+\end{itemize}
+
+\subsection{Proceso de desarrollo}\label{proceso-de-desarrollo}
+
+\textbf{Fase 1} --- \emph{Preludio a la Fundación}
+
+\begin{itemize}
+\item Relevamiento de requerimientos con las direcciones de carrera
+\item Relevamiento de datos disponibles en SIU Guaraní y fuentes complementarias
+\item Diseño del modelo de dominio y arquitectura del sistema
+\item Diseño del modelo de privacidad y ofuscación de datos
+\item Entrega del plan de trabajo
+\end{itemize}
+
+\textbf{Fase 2} --- \emph{Hacia la Fundación}
+
+\begin{itemize}
+\item Estructura del repositorio y entorno de desarrollo
+\item App base:
+  \begin{itemize}
+    \item Autenticación
+    \item Modelo de usuarios y roles
+    \item Modelo de dominio
+    \item API REST: CRUD base
+    \item Interfaz web: vistas base
+  \end{itemize}
+\item Deploy temprano en DigitalOcean\footnote{\url{https://en.wikipedia.org/wiki/DigitalOcean}}
+  \begin{itemize}
+    \item Contenedores con Docker\footnote{\url{https://en.wikipedia.org/wiki/Docker_(software)}}
+    \item CI/CD\footnote{\url{https://en.wikipedia.org/wiki/CI/CD}} en GitHub\footnote{\url{https://en.wikipedia.org/wiki/GitHub}}
+  \end{itemize}
+\end{itemize}
+
+\textbf{Fase 3} --- \emph{Fundación}
+
+\begin{itemize}
+\item Pipeline de ingesta, ofuscación y normalización de datos del SIU Guaraní
+\item Motor analítico: métricas académicas predefinidas (trayectorias, deserción, materias críticas, proyección de inscripciones) expuestas vía API REST
+\item Panel Analítico: visualización de métricas y análisis predefinidos
+\end{itemize}
+
+\textbf{Fase 4} --- \emph{Fundación e Imperio}
+
+\begin{itemize}
+\item Chatbot LLM: primera versión funcional del asistente conversacional
+\item Responde en base a datos académicos provistos en contexto mediante prompt estricto
+\item Ante consultas fuera del contexto, informa que no tiene la información
+\item Integración con el motor analítico: El chatbot LLM invoca la API REST y usa los resultados como contexto de respuesta
+\item Esquema de evaluación progresivo: métricas de calidad de respuestas e infraestructura para pruebas de prompts
+\end{itemize}
+
+\textbf{Fase 5} --- \emph{Segunda Fundación}
+
+\begin{itemize}
+\item Text-to-SQL: El chatbot LLM convierte preguntas en lenguaje natural a consultas SQL
+\item Las consultas se ejecutan directamente contra la base de datos académica
+\item Grounding estructural garantizado por la ejecución, no solo por el prompt
+\item Habilita consultas ad-hoc fuera del alcance de las métricas predefinidas del motor analítico
+\end{itemize}
+
+\textbf{Fase 6} --- \emph{Los límites de la Fundación}
+
+\begin{itemize}
+\item Gestión de documentos: carga y organización por rol y materia
+\item RAG documental con pgvector: indexación semántica de documentos académicos (reglamentos, programas de materias)
+\item El chatbot LLM recupera fragmentos relevantes y responde sobre el contenido indexado
+\item Orquestación: dado un prompt, el chatbot LLM determina qué estrategia usar
+\begin{itemize}
+  \item Consultar el motor analítico
+  \item Ejecutar Text-to-SQL
+  \item Recuperar por RAG, o combinar
+\end{itemize}
+\end{itemize}
+
+\textbf{Fase 7} --- \emph{Fundación y Tierra}
+
+\begin{itemize}
+\item Evaluación comparativa sobre consultas canónicas relevadas con los directores de carrera
+  \begin{itemize}
+    \item Precisión y latencia según tipo de consulta (estructurada, libre, documental, combinada)
+    \item Estrategia de resolución: motor analítico, Text-to-SQL, RAG documental
+  \end{itemize}
+\item Estabilización, pruebas finales y documentación técnica
+\item Redacción y entrega del informe final
+\item Defensa del trabajo
+\end{itemize}
+
+
+\subsection{Stack tecnológico principal}\label{stack-tecnologico-principal}
+
+La selección de tecnologías está
+guiada por tres criterios: madurez del ecosistema para el dominio
+estadístico-analítico, compatibilidad con los requerimientos de
+privacidad y ofuscación de datos, y posibilidad de reemplazar el modelo
+de lenguaje sin modificar el resto del sistema.
+
+\begin{itemize}
+\item \textbf{Python} (backend y análisis de datos) --- mayor adopción en la comunidad científica y de datos; ecosistema maduro para estadística, procesamiento de lenguaje natural y machine learning (pandas, NumPy, scikit-learn).
+\item \textbf{FastAPI} (API REST) --- liviano, asíncrono nativo, genera documentación OpenAPI automáticamente; adecuado para APIs analíticas con alta concurrencia.
+\item \textbf{Next.js + React} (frontend web) --- SSR nativo, ecosistema de componentes amplio, soporte para interfaces reactivas e interactivas.
+\item \textbf{PostgreSQL + pgvector} (base de datos) --- estándar de facto para datos relacionales en entornos académicos e institucionales; pgvector habilita búsqueda semántica por similitud en la misma base, sin infraestructura adicional.
+\item \textbf{LlamaIndex} (motor RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}) --- especializado en ingesta de datos y recuperación semántica; abstrae chunking, embedding e indexado, permitiendo evaluar distintas estrategias de retrieval sin reescribir la capa de integración. Más idiomático para casos RAG-first que alternativas de propósito general como LangChain\footnote{\url{https://www.langchain.com}}.
+\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Claude API en desarrollo (familiaridad y velocidad de iteración); arquitectura swappable por diseño --- el cambio de modelo es configuración, no refactoring. Se evaluará la factibilidad de correr modelos abiertos (Llama, Mistral vía Ollama) en la infraestructura de la UNQ.
+\item \textbf{Docker} (contenedores) --- estándar de facto para containerización; garantiza reproducibilidad entre entornos de desarrollo, prueba y producción, y simplifica el deploy en cualquier infraestructura.
+\end{itemize}
+
+\textbf{Privacidad:} Los datos sensibles de los estudiantes no son
+expuestos en ninguna capa del sistema. Durante el desarrollo, los datos
+de prueba son ofuscados localmente por las direcciones de carrera
+mediante herramientas provistas por el proyecto antes de ser enviados.
+La plataforma final incorpora una capa de ofuscación y anonimización en
+el pipeline de ingesta.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Cronograma}\label{cronograma}
+
+El proyecto inicia en \textbf{abril de 2026} y tiene una duración
+estimada de \textbf{6 meses} \footnote{Las semanas se solapan entre
+  fases de forma deliberada --- el inicio de cada fase no requiere que
+  la anterior esté completamente cerrada.}. La escritura del informe
+corre en paralelo con el desarrollo desde la aprobación del plan de
+trabajo.
+
+\begin{itemize}
+\item
+  \textbf{S1-S3 --- abril 2026}
+
+  \begin{itemize}
+
+  \item
+    Preludio --- \emph{Preludio a la Fundación}
+  \end{itemize}
+\item
+  \textbf{S3-S7 --- abril-mayo 2026}
+
+  \begin{itemize}
+
+  \item
+    Fase 1 --- \emph{Hacia la Fundación}
+  \end{itemize}
+\item
+  \textbf{S6-S10 --- mayo-junio 2026}
+
+  \begin{itemize}
+
+  \item
+    Fase 2 --- \emph{Fundación}
+  \end{itemize}
+\item
+  \textbf{S9-S12 --- junio-julio 2026}
+
+  \begin{itemize}
+
+  \item
+    Fase 3 --- \emph{Fundación e Imperio}
+  \end{itemize}
+\item
+  \textbf{S11-S14 --- julio 2026}
+
+  \begin{itemize}
+
+  \item
+    Fase 4 --- \emph{Segunda Fundación}
+  \end{itemize}
+\item
+  \textbf{S13-S16 --- julio-agosto 2026}
+
+  \begin{itemize}
+
+  \item
+    Fase 5 --- \emph{Los límites de la Fundación}
+  \end{itemize}
+\item
+  \textbf{S15-S17 --- agosto 2026}
+
+  \begin{itemize}
+
+  \item
+    Fase 6 --- \emph{Fundación y Tierra}
+  \end{itemize}
+\item
+  \textbf{S16-S20 --- agosto-septiembre 2026}
+
+  \begin{itemize}
+
+  \item
+    Cierre
+  \end{itemize}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Lugar de trabajo}\label{lugar-de-trabajo}
+
+El trabajo será desarrollado de forma remota y en las instalaciones de
+la Universidad Nacional de Quilmes. Se mantendrán reuniones semanales
+con la directora del Seminario. El sistema se desplegará inicialmente en
+un servidor propio (Digital Ocean) como prueba de concepto y luego se
+migrará a la infraestructura de la UNQ.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Licencia}\label{licencia}
+
+El código será licenciado bajo una licencia libre avalada por la OSI
+(Open Source Initiative). El código fuente será subido a un repositorio
+de acceso público.
+
+{[}TODO: definir licencia específica --- MIT o Apache 2.0{]}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section*{Referencias bibliográficas}
+\addcontentsline{toc}{section}{Referencias bibliográficas}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}
