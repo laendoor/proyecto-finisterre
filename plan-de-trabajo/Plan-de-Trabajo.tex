@@ -199,28 +199,30 @@ análisis. No existe una plataforma que permita a las direcciones de
 carrera explorar sus datos en lenguaje natural, detectar estudiantes en
 riesgo o anticipar situaciones críticas antes de que escalen.
 
-El volumen del problema justifica la inversión. Con 7.789 estudiantes en
-2024 \citep{unq2025transparencia}, LI y TPI son las carreras más grandes de la UNQ.
+El volumen del problema justifica la inversión. En 2024, la TPI registró 4.517 estudiantes
+y la LI 3.272 \citep{unq2025transparencia}, siendo las dos carreras con más alumnos de la UNQ.
 Y la tasa de egreso es estructuralmente baja: en los últimos años
-la relación entre nuevos inscriptos y egresados no superó el 2\%:
+la relación entre nuevos inscriptos y egresados no superó el 2\% en ninguna de las dos carreras:
 
 {\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}lrr@{}}
+\begin{longtable}[]{@{}lrrrr@{}}
 \toprule\noalign{}
-Año & Nuevos inscriptos & Egresados \\
+& \multicolumn{2}{c}{Nuevos inscriptos} & \multicolumn{2}{c}{Egresados} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Año & TPI & LI & TPI & LI \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-2019 & 910 & 22 \\
-2021 & 703 & 20 \\
-2022 & 1.281 & 28 \\
-2023 & 3.341 & 47 \\
-2024 & 3.040 & 55 \\
+2019 &   466 & 444 & 21 &  1 \\
+2021 &   395 & 308 & 18 &  2 \\
+2022 &   797 & 484 & 25 &  3 \\
+2023 & 2.093 & 1.248 & 38 &  9 \\
+2024 & 1.788 & 1.252 & 36 & 19 \\
 \end{longtable}
 }
 
-La demanda de ingreso se multiplicó por más de tres entre 2022 y 2024
+La demanda de ingreso se multiplicó por más de dos entre 2022 y 2024
 pero los egresos crecen muy por debajo de esa proporción.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -239,15 +241,39 @@ interfaz conversacional basada en IA.
 
 \subsection{Desarrollos similares en otras instituciones}\label{desarrollos-similares-en-otras-instituciones}
 
-{[}TODO: investigar y documentar --- sistemas de seguimiento académico
-en otras universidades, plataformas de analytics académico{]}
+El ecosistema SIU incluye SIU-Wichi \citep{siu2024wichi},
+un módulo de inteligencia de negocio que integra datos de Guaraní y otros
+sistemas del ecosistema y expone consultas preestablecidas y cubos de datos
+configurables. Es la única herramienta del ecosistema con capacidades analíticas,
+pero está orientada a reporting institucional agregado: no permite exploración
+interactiva de datos de estudiantes individuales ni ofrece interfaz conversacional.
+
+En el plano de iniciativas institucionales, la Universidad Nacional de Río Negro
+construyó dashboards en Google Looker Studio sobre datos exportados del SIU
+Guaraní \citep{unrn2024estadisticas}, que visualizan indicadores de eficiencia
+interna por cohorte y carrera (tasa de reinscripción, egreso, abandono). Este caso
+ilustra el patrón más frecuente en el sistema universitario argentino: extraer datos
+de Guaraní y construir visualizaciones fijas sobre ellos. El límite de este enfoque
+es que las preguntas posibles son las previstas al diseñar el dashboard.
 
 \subsection{Aplicaciones de IA conversacional en contextos de análisis de
 datos}\label{aplicaciones-de-ia-conversacional-en-contextos-de-anuxe1lisis-de-datos}
 
-{[}TODO: documentar el estado del arte en herramientas AI-first para
-análisis de datos (NotebookLM, plataformas de BI conversacional),
-justificar el enfoque RAG sobre dashboards tradicionales{]}
+Google NotebookLM\footnote{\url{https://notebooklm.google.com}} es la
+referencia más directa para el diseño de Académika. NotebookLM permite
+cargar documentos propios y consultarlos en lenguaje natural; el modelo
+responde exclusivamente a partir de las fuentes provistas, sin recurrir
+a su conocimiento general. Este principio de \emph{grounding}
+---responder solo de los datos disponibles--- elimina el riesgo de
+respuestas incorrectas en dominios donde la precisión es crítica.
+
+Académika extiende esta idea al contexto institucional de la UNQ: las
+``fuentes'' no son solo documentos sino también datos estructurados del
+SIU Guaraní, consultables mediante Text-to-SQL. La combinación de
+ambos mecanismos ---RAG documental para reglamentos y programas,
+Text-to-SQL para datos académicos tabulares--- permite aplicar el
+mismo principio de grounding a la totalidad de la información relevante
+para las direcciones de carrera.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -479,11 +505,12 @@ migrará a la infraestructura de la UNQ.
 
 \section{Licencia}\label{licencia}
 
-El código será licenciado bajo una licencia libre avalada por la OSI
-(Open Source Initiative). El código fuente será subido a un repositorio
-de acceso público.
-
-{[}TODO: definir licencia específica --- MIT o Apache 2.0{]}
+El código será licenciado bajo la \textbf{GNU General Public License v3}
+\citep{fsf2007gplv3}, avalada por la OSI (Open Source Initiative). Esta licencia garantiza que
+cualquier adaptación o extensión del sistema deba publicarse también bajo
+los mismos términos, asegurando que el trabajo permanezca en el dominio
+público y sea reutilizable por otras instituciones educativas. El código
+fuente será subido a un repositorio de acceso público.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
