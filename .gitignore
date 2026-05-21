@@ -11,4 +11,6 @@ plan-de-trabajo/*.log
 plan-de-trabajo/*.out
 plan-de-trabajo/*.synctex.gz
 plan-de-trabajo/*.toc
+plan-de-trabajo/*.loc
+plan-de-trabajo/*.soc
 plan-de-trabajo/*.pdf
