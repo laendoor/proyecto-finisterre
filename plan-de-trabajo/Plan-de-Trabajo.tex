@@ -329,7 +329,8 @@ respuestas incorrectas en dominios donde la precisión es crítica.
 Académika extiende esta idea al contexto institucional de la UNQ: las
 ``fuentes'' no son solo documentos sino también datos estructurados del
 SIU Guaraní, consultables mediante Text-to-SQL. La combinación de
-ambos mecanismos ---RAG \ga{¿Qué significa RAG?} documental para reglamentos y programas,
+ambos mecanismos ---RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}
+documental para reglamentos y programas,
 Text-to-SQL para datos académicos tabulares--- permite aplicar el
 mismo principio de grounding a la totalidad de la información relevante
 para las direcciones de carrera.
@@ -338,36 +339,13 @@ para las direcciones de carrera.
 
 \section{Objetivos}\label{objetivos}
 
-\subsection{Objetivo general}\label{objetivo-general}
-
-Diseñar, desarrollar y validar una plataforma web que permita a la
-dirección de carreras y al equipo docente de la UNQ analizar, consultar
+Diseñar, desarrollar y validar una plataforma web que permita a las
+direcciones de carrera y al equipo docente de la UNQ analizar, consultar
 y comprender la situación académica de estudiantes, materias y carreras
 mediante una interfaz conversacional basada en inteligencia artificial,
-\replaced{utilizando}{con}con datos provenientes del SIU Guaraní y \added{otras} fuentes complementarias,
-\replaced{con el objetivo de facilitar}{orientada a} la toma de decisiones en los distintos momentos del ciclo
+utilizando datos provenientes del SIU Guaraní y otras fuentes complementarias,
+con el objetivo de facilitar la toma de decisiones en los distintos momentos del ciclo
 académico.
-
-\ga{Estos no son los objetivos específicos. Son los pasos para el desarrollo del trabajo. Es como una línea temporal}
-\subsection{Objetivos específicos}\label{objetivos-especuxedficos}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item Relevar los requerimientos funcionales y no funcionales de las
-  direcciones de carrera de LI y TPI.
-\item Diseñar el modelo de dominio y la arquitectura del sistema, incluyendo
-  el modelo de privacidad y ofuscación de datos sensibles.
-\item Desarrollar el pipeline de ingesta, ofuscación y normalización de
-  datos provenientes del SIU Guaraní y fuentes complementarias.
-\item Desarrollar el motor analítico-determinístico con métricas académicas
-  predefinidas (trayectorias estudiantiles, materias críticas,
-  deserción, proyección de inscripciones).
-\item Desarrollar un chatbot LLM, la interfaz conversacional de Académika, con grounding estricto sobre las fuentes provistas: Text-to-SQL para consultas sobre datos estructurados del SIU Guaraní, y RAG documental para consultas sobre documentos académicos institucionales; evaluar comparativamente ambas estrategias según tipo de consulta.
-\item Desarrollar el frontend web con panel analítico e interfaz de chat.
-\item Realizar pruebas unitarias y de integración del sistema.
-\item Poner en producción dentro del entorno de la UNQ.
-\item Documentar el sistema y redactar el informe final.
-\end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -403,19 +381,19 @@ El chatbot LLM responde exclusivamente a partir de las fuentes provistas ---
 datos académicos importados del SIU Guaraní y documentos institucionales ---
 sin recurrir al conocimiento general del modelo de lenguaje.
 Esta restricción, análoga al diseño de NotebookLM\footnote{\url{https://notebooklm.google.com}},
-reduce el riesgo de respuestas incorrectas (\emph{alucinaciones \ga{Definilo en un footnote}}) en un dominio donde la precisión es crítica.
-El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
-
-\begin{itemize}
-  \item en Fase 4, el chatbot LLM opera con prompt estricto y datos estructurados en contexto;
-  \item en Fase 5, Text-to-SQL garantiza grounding estructural ejecutando consultas SQL directamente contra la base de datos;
-  \item en Fase 6, RAG documental extiende ese grounding a documentos académicos no estructurados.
-\end{itemize}
+reduce el riesgo de respuestas incorrectas (\emph{alucinaciones}\footnote{Fenómeno por el cual
+un modelo de lenguaje produce afirmaciones incorrectas o inventadas presentándolas con la misma
+confianza que información verídica, sin señalar su incertidumbre.}) en un dominio donde la precisión es crítica.
+El mecanismo de grounding\footnote{Principio de diseño que reduce el riesgo de alucinaciones:
+el modelo responde exclusivamente a partir de las fuentes provistas, sin recurrir a su conocimiento general.}
+evoluciona progresivamente a lo largo de las fases.
 
 \subsection{Proceso de desarrollo}\label{proceso-de-desarrollo}
-\ga{Yo explicaría el origen de los títulos de las fases del trabajo.}
+
 \textbf{Fase 1} --- \emph{Preludio a la Fundación}
-\ga{Aquí va parte de los objetivos específicos.}
+
+\emph{Objetivo:} Establecer las bases conceptuales y técnicas del proyecto y producir el plan de trabajo.
+
 \begin{itemize}
 \item Relevamiento de requerimientos con las direcciones de carrera
 \item Relevamiento de datos disponibles en SIU Guaraní y fuentes complementarias
@@ -425,6 +403,8 @@ El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
 \end{itemize}
 
 \textbf{Fase 2} --- \emph{Hacia la Fundación}
+
+\emph{Objetivo:} Plataforma base funcional y desplegada en producción, sin componentes de IA.
 
 \begin{itemize}
 \item Estructura del repositorio y entorno de desarrollo
@@ -445,6 +425,8 @@ El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
 
 \textbf{Fase 3} --- \emph{Fundación}
 
+\emph{Objetivo:} Incorporar datos reales del SIU Guaraní y exponer métricas académicas a través de un panel analítico.
+
 \begin{itemize}
 \item Pipeline de ingesta, ofuscación y normalización de datos del SIU Guaraní
 \item Motor analítico: métricas académicas predefinidas (trayectorias, deserción, materias críticas, proyección de inscripciones) expuestas vía API REST
@@ -452,6 +434,8 @@ El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
 \end{itemize}
 
 \textbf{Fase 4} --- \emph{Fundación e Imperio}
+
+\emph{Objetivo:} Primera versión funcional del chatbot LLM integrado, con diseño de grounding por prompt estricto.
 
 \begin{itemize}
 \item Chatbot LLM: primera versión funcional del asistente conversacional
@@ -463,6 +447,8 @@ El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
 
 \textbf{Fase 5} --- \emph{Segunda Fundación}
 
+\emph{Objetivo:} Incorporar Text-to-SQL al chatbot LLM para consultas ad-hoc, con diseño de grounding estructural.
+
 \begin{itemize}
 \item Text-to-SQL: El chatbot LLM convierte preguntas en lenguaje natural a consultas SQL
 \item Las consultas se ejecutan directamente contra la base de datos académica
@@ -471,6 +457,8 @@ El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
 \end{itemize}
 
 \textbf{Fase 6} --- \emph{Los límites de la Fundación}
+
+\emph{Objetivo:} Incorporar RAG documental y orquestación con diseño de grounding unificado, completando el sistema.
 
 \begin{itemize}
 \item Gestión de documentos: carga y organización por rol y materia
@@ -485,6 +473,8 @@ El mecanismo de grounding evoluciona progresivamente a lo largo de las fases:
 \end{itemize}
 
 \textbf{Fase 7} --- \emph{Fundación y Tierra}
+
+\emph{Objetivo:} Validación, evaluación comparativa de estrategias y cierre del seminario.
 
 \begin{itemize}
 \item Evaluación comparativa sobre consultas canónicas relevadas con los directores de carrera
@@ -528,7 +518,7 @@ el pipeline de ingesta.
 \section{Cronograma}\label{cronograma}
 
 El proyecto inicia en \textbf{abril de 2026} y tiene una duración
-estimada de \textbf{7 meses}\footnote{Las semanas se solapan entre
+estimada de \textbf{8 meses}\footnote{Las semanas se solapan entre
 fases de forma deliberada --- el inicio de cada fase no requiere que
 la anterior esté completamente cerrada.}. La escritura del informe
 corre en paralelo con el desarrollo desde la aprobación del plan de
@@ -540,13 +530,13 @@ trabajo.
 \toprule
 \textbf{Fase} & \textbf{Actividad} & \textbf{Período} & \textbf{Semanas} \\
 \midrule
-Fase 1 & Setup académico              & Abril 2026               & S1--S4   \\
-Fase 2 & App base                     & Mayo 2026                & S5--S8   \\
-Fase 3 & Ingesta, motor analítico     & Mayo--Junio 2026         & S7--S12  \\
-Fase 4 & Chatbot LLM                  & Junio--Julio 2026        & S11--S16 \\
-Fase 5 & Text-to-SQL                  & Julio--Agosto 2026       & S15--S20 \\
-Fase 6 & RAG documental               & Agosto--Septiembre 2026  & S19--S24 \\
-Fase 7 & Evaluación, cierre y defensa & Septiembre--Octubre 2026 & S23--S28 \\
+Fase 1 & Setup académico              & Abril 2026                & S1--S4   \\
+Fase 2 & App base                     & Mayo--Junio 2026          & S5--S10  \\
+Fase 3 & Ingesta, motor analítico     & Junio--Julio 2026         & S9--S16  \\
+Fase 4 & Chatbot LLM                  & Julio--Agosto 2026        & S15--S22 \\
+Fase 5 & Text-to-SQL                  & Agosto--Septiembre 2026   & S21--S26 \\
+Fase 6 & RAG documental               & Septiembre--Octubre 2026  & S25--S30 \\
+Fase 7 & Evaluación, cierre y defensa & Octubre--Noviembre 2026   & S29--S32 \\
 \bottomrule
 \end{tabular}}
 \end{center}
