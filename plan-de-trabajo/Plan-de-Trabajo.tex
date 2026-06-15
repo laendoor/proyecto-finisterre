@@ -486,13 +486,83 @@ de hacer modificaciones de código.
 
 \section{Objetivos}\label{objetivos}
 
-Diseñar, desarrollar y validar una plataforma web que permita a las
-direcciones de carrera y al equipo docente de la UNQ analizar, consultar
+Los objetivos se organizan en dos niveles: uno general, que define el propósito global del trabajo,
+y un conjunto de objetivos específicos que lo desglosan desde distintas dimensiones ---funcional,
+técnica, de privacidad y de validación.
+
+\subsection{Objetivo general}\label{objetivo-general}
+
+Diseñar, desarrollar y validar una plataforma web IA-nativa que permita a las
+direcciones de carrera y a los equipos docentes de la UNQ analizar, consultar
 y comprender la situación académica de estudiantes, materias y carreras
 mediante una interfaz conversacional basada en inteligencia artificial,
 utilizando datos provenientes del SIU Guaraní y otras fuentes complementarias,
 con el objetivo de facilitar la toma de decisiones en los distintos momentos del ciclo
 académico.
+
+\subsection{Objetivos específicos}\label{objetivos-especificos}
+
+\subsubsection*{Implementar casos de uso concretos}
+
+Desarrollar y validar un conjunto de casos de uso relevados directamente con las direcciones de carrera:
+consultas de trayectoria estudiantil, detección de materias con alta tasa de abandono,
+proyección de demanda por materia y análisis de riesgo de deserción.
+Estos casos representan las preguntas que hoy no tienen respuesta disponible en ningún sistema
+institucional sin trabajo manual.
+
+\subsubsection*{Implementar y evaluar tres estrategias complementarias de anclaje\footnote{
+Principio de diseño por el cual un sistema responde exclusivamente a partir de las fuentes provistas.}}
+
+El enfoque conversacional evoluciona a lo largo de tres estrategias progresivas:
+(a)~anclaje por instrucción estricta, donde el contexto se provee explícitamente al modelo;
+(b)~Text-to-SQL, donde el modelo convierte consultas en lenguaje natural a SQL ejecutado
+directamente sobre los datos académicos;
+(c)~RAG\footnote{Generación Aumentada por Recuperación (Retrieval-Augmented Generation) --- \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}
+documental, donde el modelo recupera fragmentos relevantes de documentos institucionales
+(planes de estudio, programas de materias) antes de responder.
+
+\subsubsection*{Integrar un modelo de lenguaje sin re-entrenamiento}
+
+Académika no requiere ajuste fino\footnote{\emph{Fine-tuning}: proceso de re-entrenamiento parcial
+de un modelo de lenguaje pre-entrenado utilizando datos específicos del dominio,
+con el objetivo de especializar su comportamiento. \url{https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)}}
+ni re-entrenamiento del modelo de lenguaje.
+
+Las técnicas empleadas ---instrucción directa, Text-to-SQL y RAG--- adaptan el comportamiento del modelo
+al dominio institucional sin modificar sus pesos.
+Esto permite mantener el sistema sin necesidad de aplicar técnicas especializada en aprendizaje automático,
+a la vez que genera la capacidad de intercambiar el modelo base por otro sin necesidad de re-entrenamiento.
+
+\subsubsection*{Garantizar independencia de proveedor de modelo}
+
+La arquitectura está diseñada para que el  modelo de lenguaje sea intercambiable
+desde la configuración, sin modificaciones de código.
+Tanto durante el desarrollo como en la implementación se pretende utilizar un modelo de código abierto
+ejecutado localmente sobre infraestructura propia,
+aunque del sistema es diseñado de forma tal que sea posible
+intercambiar el modelo base para soportar otras alternativas,
+tanto locales como en la nube.
+
+Esto elimina la dependencia de un proveedor externo y el riesgo de cautividad tecnológica
+asociado a costos de API o cambios en los términos de servicio.
+
+\subsubsection*{Preservar la privacidad de datos académicos}
+
+Si bien el sistema almacena los datos académicos provistos a partir de
+planillas exportadas desde el SIU Guaraní, se restringe su visibilidad en el uso diario.
+En las respuestas regulares ---consultas, análisis, conversaciones con el asistente---
+los datos sensibles de los estudiantes no son expuestos.
+El sistema opera sobre identificadores internos u ofuscados.
+Los datos personales son accesibles únicamente a través de reportes específicos,
+disponibles solo para los roles con permisos explícitos para ello.
+
+\subsubsection*{Diseñar la plataforma con potencial de generalización}
+
+El modelo de dominio, el flujo de ingesta y la arquitectura conversacional están diseñados
+de manera que el enfoque sea aplicable a otras carreras e instituciones educativas
+más allá de TPI y LI.
+El trabajo documenta tanto el modelo de datos como el proceso de adaptación al SIU Guaraní,
+con el objetivo de facilitar su adopción en otros contextos institucionales.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -575,21 +645,21 @@ evoluciona progresivamente a lo largo de las fases.
 \emph{Objetivo:} Incorporar datos reales del SIU Guaraní y exponer métricas académicas a través de un panel analítico.
 
 \begin{itemize}
-\item Pipeline de ingesta, ofuscación y normalización de datos del SIU Guaraní
+\item Flujo de ingesta, ofuscación y normalización de datos del SIU Guaraní
 \item Motor analítico: métricas académicas predefinidas (trayectorias, deserción, materias críticas, proyección de inscripciones) expuestas vía API REST
 \item Panel Analítico: visualización de métricas y análisis predefinidos
 \end{itemize}
 
 \textbf{Fase 4} --- \emph{Fundación e Imperio}
 
-\emph{Objetivo:} Primera versión funcional del chatbot LLM integrado, con diseño de grounding por prompt estricto.
+\emph{Objetivo:} Primera versión funcional del chatbot LLM integrado, con diseño de anclaje por instrucción estricta.
 
 \begin{itemize}
 \item Chatbot LLM: primera versión funcional del asistente conversacional
-\item Responde en base a datos académicos provistos en contexto mediante prompt estricto
+\item Responde en base a datos académicos provistos en contexto mediante instrucción estricta
 \item Ante consultas fuera del contexto, informa que no tiene la información
 \item Integración con el motor analítico: El chatbot LLM invoca la API REST y usa los resultados como contexto de respuesta
-\item Esquema de evaluación progresivo: métricas de calidad de respuestas e infraestructura para pruebas de prompts
+\item Esquema de evaluación progresivo: métricas de calidad de respuestas e infraestructura para pruebas de instrucciones
 \end{itemize}
 
 \textbf{Fase 5} --- \emph{Segunda Fundación}
@@ -599,7 +669,7 @@ evoluciona progresivamente a lo largo de las fases.
 \begin{itemize}
 \item Text-to-SQL: El chatbot LLM convierte preguntas en lenguaje natural a consultas SQL
 \item Las consultas se ejecutan directamente contra la base de datos académica
-\item Grounding estructural garantizado por la ejecución, no solo por el prompt
+\item Anclaje estructural garantizado por la ejecución, no solo por la instrucción
 \item Habilita consultas ad-hoc fuera del alcance de las métricas predefinidas del motor analítico
 \end{itemize}
 
@@ -611,7 +681,7 @@ evoluciona progresivamente a lo largo de las fases.
 \item Gestión de documentos: carga y organización por rol y materia
 \item RAG documental con pgvector: indexación semántica de documentos académicos (reglamentos, programas de materias)
 \item El chatbot LLM recupera fragmentos relevantes y responde sobre el contenido indexado
-\item Orquestación: dado un prompt, el chatbot LLM determina qué estrategia usar
+\item Orquestación: dada una instrucción, el chatbot LLM determina qué estrategia usar
 \begin{itemize}
   \item Consultar el motor analítico
   \item Ejecutar Text-to-SQL
@@ -658,7 +728,7 @@ expuestos en ninguna capa del sistema. Durante el desarrollo, los datos
 de prueba son ofuscados localmente por las direcciones de carrera
 mediante herramientas provistas por el proyecto antes de ser enviados.
 La plataforma final incorpora una capa de ofuscación y anonimización en
-el pipeline de ingesta.
+el flujo de ingesta.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
