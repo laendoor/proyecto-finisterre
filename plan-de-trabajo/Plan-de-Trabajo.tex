@@ -361,17 +361,16 @@ Google NotebookLM\footnote{\url{https://notebooklm.google.com}} es la
 referencia más directa para el diseño de Académika. NotebookLM permite
 cargar documentos propios y consultarlos en lenguaje natural. El modelo
 responde exclusivamente a partir de las fuentes provistas, sin recurrir
-a su conocimiento general. Este principio de \emph{grounding}
----responder solo de los datos disponibles--- elimina el riesgo de
+a su conocimiento general. Este principio de \emph{anclaje contextual}
+---responder solo a partir de los datos disponibles--- elimina el riesgo de
 respuestas incorrectas en dominios donde la precisión es crítica.
 
 Académika extiende esta idea al contexto institucional de la UNQ: las
 ``fuentes'' no son solo documentos sino también datos estructurados del
 SIU Guaraní, consultables mediante Text-to-SQL. La combinación de
-ambos mecanismos ---RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}
-documental para reglamentos y programas,
+ambos mecanismos ---recuperación documental para reglamentos y programas,
 Text-to-SQL para datos académicos tabulares--- permite aplicar el
-mismo principio de grounding a la totalidad de la información relevante
+mismo principio de anclaje a la totalidad de la información relevante
 para las direcciones de carrera.
 
 \subsection{Modelos de lenguaje: panorama y criterios de selección}\label{modelos-de-lenguaje}
@@ -617,18 +616,16 @@ El trabajo se organiza en siete fases, denominadas con los títulos de la \emph{
 \end{tabular}}
 \end{center}
 
-\subsection{Principio de diseño: grounding}\label{principio-de-diseno-grounding}
+\subsection{Principio de diseño: anclaje contextual}\label{principio-de-diseno-anclaje}
 
-El chatbot LLM responde exclusivamente a partir de las fuentes provistas ---
+El asistente conversacional responde exclusivamente a partir de las fuentes provistas ---
 datos académicos importados del SIU Guaraní y documentos institucionales ---
 sin recurrir al conocimiento general del modelo de lenguaje.
 Esta restricción, análoga al diseño de NotebookLM\footnote{\url{https://notebooklm.google.com}},
 reduce el riesgo de respuestas incorrectas (\emph{alucinaciones}\footnote{Fenómeno por el cual
 un modelo de lenguaje produce afirmaciones incorrectas o inventadas presentándolas con la misma
 confianza que información verídica, sin señalar su incertidumbre.}) en un dominio donde la precisión es crítica.
-El mecanismo de grounding\footnote{Principio de diseño que reduce el riesgo de alucinaciones:
-el modelo responde exclusivamente a partir de las fuentes provistas, sin recurrir a su conocimiento general.}
-evoluciona progresivamente a lo largo de las fases.
+El mecanismo de anclaje evoluciona progresivamente a lo largo de las fases.
 
 \subsection{Proceso de desarrollo}\label{proceso-de-desarrollo}
 
@@ -636,98 +633,79 @@ evoluciona progresivamente a lo largo de las fases.
 
 \emph{Objetivo:} Establecer las bases conceptuales y técnicas del proyecto y producir el plan de trabajo.
 
-\begin{itemize}
-\item Relevamiento de requerimientos con las direcciones de carrera
-\item Relevamiento de datos disponibles en SIU Guaraní y fuentes complementarias
-\item Diseño del modelo de dominio y arquitectura del sistema
-\item Diseño del modelo de privacidad y ofuscación de datos
-\item Entrega del plan de trabajo
-\end{itemize}
+La primera fase establece los cimientos del proyecto. A partir de entrevistas con las direcciones de carrera
+se identifican los requerimientos y los tipos de consultas que el sistema debe responder.
+En paralelo, se releva la estructura de los datos disponibles en el SIU Guaraní y se diseñan
+el modelo de dominio y el esquema de privacidad que guiarán el desarrollo.
+La fase concluye con la entrega del plan de trabajo.
 
 \textbf{Fase 2} --- \emph{Hacia la Fundación}
 
 \emph{Objetivo:} Plataforma base funcional y desplegada en producción, sin componentes de IA.
 
-\begin{itemize}
-\item Estructura del repositorio y entorno de desarrollo
-\item App base:
-  \begin{itemize}
-    \item Autenticación
-    \item Modelo de usuarios y roles
-    \item Modelo de dominio
-    \item API REST: CRUD base
-    \item Interfaz web: vistas base
-  \end{itemize}
-\item Deploy temprano en DigitalOcean\footnote{\url{https://en.wikipedia.org/wiki/DigitalOcean}}
-  \begin{itemize}
-    \item Contenedores con Docker\footnote{\url{https://en.wikipedia.org/wiki/Docker_(software)}}
-    \item CI/CD\footnote{\url{https://en.wikipedia.org/wiki/CI/CD}} en GitHub\footnote{\url{https://en.wikipedia.org/wiki/GitHub}}
-  \end{itemize}
-\end{itemize}
+La segunda fase construye la plataforma base sobre la que se apoyará todo el desarrollo posterior.
+Se implementan los componentes fundamentales del sistema ---autenticación, modelo de usuarios y roles,
+modelo de dominio y API REST--- y se establece una interfaz web inicial.
+Al mismo tiempo, la plataforma se despliega en producción de manera temprana con integración continua
+y contenedores para validar la infraestructura antes de incorporar componentes más complejos.
 
 \textbf{Fase 3} --- \emph{Fundación}
 
 \emph{Objetivo:} Incorporar datos reales del SIU Guaraní y exponer métricas académicas a través de un panel analítico.
 
-\begin{itemize}
-\item Flujo de ingesta, ofuscación y normalización de datos del SIU Guaraní
-\item Motor analítico: métricas académicas predefinidas (trayectorias, deserción, materias críticas, proyección de inscripciones) expuestas vía API REST
-\item Panel Analítico: visualización de métricas y análisis predefinidos
-\end{itemize}
+La tercera fase incorpora los datos reales del SIU Guaraní mediante un flujo de ingesta
+con etapas de normalización y control de privacidad.
+Sobre esos datos se construye un motor analítico que computa métricas académicas predefinidas
+---trayectorias estudiantiles, deserción, materias críticas, proyección de inscripciones---
+y las expone a través de un panel de visualización.
+Esta fase representa la primera versión del sistema con valor concreto para las direcciones de carrera.
 
 \textbf{Fase 4} --- \emph{Fundación e Imperio}
 
-\emph{Objetivo:} Primera versión funcional del chatbot LLM integrado, con diseño de anclaje por instrucción estricta.
+\emph{Objetivo:} Primera versión con asistente conversacional diseñado con anclaje por instrucciones estrictas.
 
-\begin{itemize}
-\item Chatbot LLM: primera versión funcional del asistente conversacional
-\item Responde en base a datos académicos provistos en contexto mediante instrucción estricta
-\item Ante consultas fuera del contexto, informa que no tiene la información
-\item Integración con el motor analítico: El chatbot LLM invoca la API REST y usa los resultados como contexto de respuesta
-\item Esquema de evaluación progresivo: métricas de calidad de respuestas e infraestructura para pruebas de instrucciones
-\end{itemize}
+La cuarta fase introduce el asistente conversacional como componente central del sistema.
+En esta versión el modelo de lenguaje responde exclusivamente a partir de datos académicos
+provistos en contexto mediante instrucciones estrictas: ante consultas fuera del dominio,
+informa explícitamente que no dispone de esa información.
+El asistente se integra con el motor analítico de la fase anterior, invocando sus resultados como base de respuesta.
+Se establece además la infraestructura de evaluación que permitirá medir y comparar
+la calidad de las respuestas en fases sucesivas.
 
 \textbf{Fase 5} --- \emph{Segunda Fundación}
 
-\emph{Objetivo:} Incorporar Text-to-SQL al chatbot LLM para consultas ad-hoc, con diseño de grounding estructural.
+\emph{Objetivo:} Incorporar Text-to-SQL al asistente con con diseño de anclaje estructural.
 
-\begin{itemize}
-\item Text-to-SQL: El chatbot LLM convierte preguntas en lenguaje natural a consultas SQL
-\item Las consultas se ejecutan directamente contra la base de datos académica
-\item Anclaje estructural garantizado por la ejecución, no solo por la instrucción
-\item Habilita consultas ad-hoc fuera del alcance de las métricas predefinidas del motor analítico
-\end{itemize}
+La quinta fase extiende las capacidades del asistente mediante Text-to-SQL:
+el modelo convierte preguntas en lenguaje natural a consultas SQL que se ejecutan
+directamente sobre la base de datos del sistema.
+Este mecanismo amplía el repertorio de consultas posibles más allá de las métricas predefinidas
+del motor analítico y garantiza la exactitud numérica de las respuestas por construcción.
+El anclaje ya no depende solo de la instrucción sino de la ejecución efectiva contra datos reales.
 
 \textbf{Fase 6} --- \emph{Los límites de la Fundación}
 
-\emph{Objetivo:} Incorporar RAG documental y orquestación con diseño de grounding unificado, completando el sistema.
+\emph{Objetivo:} Incorporar recuperación documental y orquestación con diseño de anclaje unificado.
 
-\begin{itemize}
-\item Gestión de documentos: carga y organización por rol y materia
-\item RAG documental con pgvector: indexación semántica de documentos académicos (reglamentos, programas de materias)
-\item El chatbot LLM recupera fragmentos relevantes y responde sobre el contenido indexado
-\item Orquestación: dada una instrucción, el chatbot LLM determina qué estrategia usar
-\begin{itemize}
-  \item Consultar el motor analítico
-  \item Ejecutar Text-to-SQL
-  \item Recuperar por RAG, o combinar
-\end{itemize}
-\end{itemize}
+La sexta fase incorpora la recuperación de información documental (RAG):
+los documentos institucionales ---reglamentos, programas de materias--- son indexados semánticamente
+y es posible hacer consultas sobre ellos en lenguaje natural.
+Con los tres mecanismos disponibles ---motor analítico, Text-to-SQL y recuperación documental---
+se implementa una capa de orquestación que determina automáticamente qué combinación de estrategias
+aplicar según el tipo de consulta recibida.
+El sistema queda así completo en sus capacidades de respuesta.
 
 \textbf{Fase 7} --- \emph{Fundación y Tierra}
 
-\emph{Objetivo:} Validación, evaluación comparativa de estrategias y cierre del seminario.
+\emph{Objetivo:} Validación, evaluación comparativa de estrategias, informe y defensa.
 
-\begin{itemize}
-\item Evaluación comparativa sobre consultas canónicas relevadas con los directores de carrera
-  \begin{itemize}
-    \item Precisión y latencia según tipo de consulta (estructurada, libre, documental, combinada)
-    \item Estrategia de resolución: motor analítico, Text-to-SQL, RAG documental
-  \end{itemize}
-\item Estabilización, pruebas finales y documentación técnica
-\item Redacción y entrega del informe final
-\item Defensa del trabajo
-\end{itemize}
+La séptima fase evalúa el sistema de manera integral.
+Se realiza una evaluación comparativa de las tres estrategias de anclaje
+---motor analítico, Text-to-SQL y recuperación documental---
+sobre un conjunto de consultas canónicas relevadas con los directores de carrera,
+midiendo precisión y tiempo de respuesta según el tipo de consulta.
+Son cierre de esta fase la evaluación de respuestas, la estabilización final del sistema,
+la redacción del informe y la defensa del trabajo.
 
 
 \subsection{Stack tecnológico principal}\label{stack-tecnologico-principal}
