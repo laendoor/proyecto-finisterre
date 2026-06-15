@@ -266,8 +266,8 @@ Académika adopta la misma filosofía pero limitando al contexto institucional.
 Estos puntos son el diferencial con una aplicación tradicional de análisis, donde 
 la capacidad de respuesta está limitada a lo que se haya programado previamente.
 Una plataforma IA-nativa de este estilo permite explorar un abanico de funcionalidades
-mucho mayor (dentro de un dominio específico) sin que el desarrollador tenga que saber
-de antemano qué es lo que va a solicitar el usuario.
+mucho mayor (dentro de un dominio específico) sin que el equipo de desarrollo tenga que
+proveer de antemano lo que va a solicitar el usuario.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -425,7 +425,7 @@ mayor necesidad de procesamiento.
 {\renewcommand{\arraystretch}{1.3}
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllll@{}}
 \toprule
-\textbf{Desarrollador} & \textbf{Modelo} & \textbf{Parám.} & \textbf{Licencia} & \makecell[l]{\textbf{RAM}\\\textbf{mínima}} & \makecell[l]{\textbf{Manejo de}\\\textbf{Español}} \\
+\textbf{Compañía} & \textbf{Modelo} & \textbf{Parám.} & \textbf{Licencia} & \makecell[l]{\textbf{RAM}\\\textbf{mínima}} & \makecell[l]{\textbf{Manejo de}\\\textbf{Español}} \\
 \midrule
 Microsoft  & \textbf{Phi-4 Mini}   & 3,8B & MIT\footnote{MIT: Licencia permisiva que permite usar, modificar y redistribuir el software sin restricciones, incluyendo con fines comerciales, conservando el aviso de \emph{copyright} original. \url{https://opensource.org/license/mit}}        & 8 GB  & Regular   \\
 Google     & \textbf{Gemma 3 4B}   & 4B   & Gemma ToU\footnote{Gemma ToU: Términos de uso de Google para los modelos Gemma; permiten uso libre incluso comercial, con restricciones sobre redistribución como modelo base y usos que compitan directamente con servicios de Google. \url{https://ai.google.dev/gemma/terms}}  & 8 GB  & Bueno     \\
@@ -443,7 +443,7 @@ Meta       & \textbf{Llama 3.3 8B} & 8B   & Llama 3\footnote{Llama 3: Libre para
 {\renewcommand{\arraystretch}{1.3}
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllll@{}}
 \toprule
-\textbf{Desarrollador} & \textbf{Modelo} & \textbf{Parám.} & \textbf{Licencia} & \makecell[l]{\textbf{VRAM}\\\textbf{mínima}} & \makecell[l]{\textbf{Manejo de}\\\textbf{Español}} \\
+\textbf{Compañía} & \textbf{Modelo} & \textbf{Parám.} & \textbf{Licencia} & \makecell[l]{\textbf{VRAM}\\\textbf{mínima}} & \makecell[l]{\textbf{Manejo de}\\\textbf{Español}} \\
 \midrule
 Alibaba & \textbf{Qwen3 30B}     & 30B & Apache 2.0 & 16 GB & Muy bueno \\
 Meta    & \textbf{Llama 3.3 70B} & 70B & Llama 3    & 48 GB & Bueno     \\
@@ -606,7 +606,7 @@ El trabajo se organiza en siete fases, denominadas con los títulos de la \emph{
 \textbf{Fase} & \textbf{Libro} & \textbf{Contenido} \\
 \midrule
 1 & \emph{Preludio a la Fundación}     & Setup académico: relevamiento, diseño, plan de trabajo \\
-2 & \emph{Hacia la Fundación}          & App base, deploy inicial \\
+2 & \emph{Hacia la Fundación}          & App base, despliegue inicial \\
 3 & \emph{Fundación}                   & Ingesta de datos, motor analítico, panel analítico \\
 4 & \emph{Fundación e Imperio}         & Chatbot LLM: primera versión conversacional \\
 5 & \emph{Segunda Fundación}           & Text-to-SQL en Chatbot LLM \\
@@ -702,7 +702,7 @@ El sistema queda así completo en sus capacidades de respuesta.
 La séptima fase evalúa el sistema de manera integral.
 Se realiza una evaluación comparativa de las tres estrategias de anclaje
 ---motor analítico, Text-to-SQL y recuperación documental---
-sobre un conjunto de consultas canónicas relevadas con los directores de carrera,
+sobre un conjunto de consultas canónicas relevadas con las direcciones de carrera,
 midiendo precisión y tiempo de respuesta según el tipo de consulta.
 Son cierre de esta fase la evaluación de respuestas, la estabilización final del sistema,
 la redacción del informe y la defensa del trabajo.
@@ -717,13 +717,13 @@ privacidad y ofuscación de datos, y posibilidad de reemplazar el modelo
 de lenguaje sin modificar el resto del sistema.
 
 \begin{itemize}
-\item \textbf{Python} (backend y análisis de datos) --- mayor adopción en la comunidad científica y de datos; ecosistema maduro para estadística, procesamiento de lenguaje natural y machine learning (pandas, NumPy, scikit-learn).
+\item \textbf{Python} (backend y análisis de datos) --- mayor adopción en la comunidad científica y de datos; ecosistema maduro para estadística, procesamiento de lenguaje natural y aprendizaje automático (pandas, NumPy, scikit-learn).
 \item \textbf{FastAPI} (API REST) --- liviano, asíncrono nativo, genera documentación OpenAPI automáticamente; adecuado para APIs analíticas con alta concurrencia.
 \item \textbf{Next.js + React} (frontend web) --- SSR nativo, ecosistema de componentes amplio, soporte para interfaces reactivas e interactivas.
 \item \textbf{PostgreSQL + pgvector} (base de datos) --- estándar de facto para datos relacionales en entornos académicos e institucionales; pgvector habilita búsqueda semántica por similitud en la misma base, sin infraestructura adicional.
-\item \textbf{LlamaIndex} (motor RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}) --- especializado en ingesta de datos y recuperación semántica; abstrae chunking, embedding e indexado, permitiendo evaluar distintas estrategias de retrieval sin reescribir la capa de integración. Más idiomático para casos RAG-first que alternativas de propósito general como LangChain\footnote{\url{https://www.langchain.com}}.
-\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Claude API durante el desarrollo (familiaridad y velocidad de iteración); Ollama\footnote{\url{https://ollama.com}} como servidor de inferencia para producción, con Qwen3 8B\footnote{\url{https://huggingface.co/Qwen/Qwen3-8B}} como modelo seleccionado según el análisis de la sección~\ref{modelos-de-lenguaje}. La arquitectura es \emph{swappable} por diseño: el cambio de modelo es configuración, no refactoring. Dada la velocidad con que evoluciona el ecosistema de modelos de código abierto, la elección específica puede revisarse durante el desarrollo sin impacto estructural en el sistema.
-\item \textbf{Docker} (contenedores) --- estándar de facto para containerización; garantiza reproducibilidad entre entornos de desarrollo, prueba y producción, y simplifica el deploy en cualquier infraestructura.
+\item \textbf{LlamaIndex} (motor RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}) --- especializado en ingesta de datos y recuperación semántica; abstrae segmentación de documentos, representación vectorial e indexado, permitiendo evaluar distintas estrategias de retrieval sin reescribir la capa de integración. Más idiomático para casos RAG-first que alternativas de propósito general como LangChain\footnote{\url{https://www.langchain.com}}.
+\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Claude API durante el desarrollo (familiaridad y velocidad de iteración); Ollama\footnote{\url{https://ollama.com}} como servidor de inferencia para producción, con Qwen3 8B\footnote{\url{https://huggingface.co/Qwen/Qwen3-8B}} como modelo seleccionado según el análisis de la sección~\ref{modelos-de-lenguaje}. La arquitectura es intercambiable por diseño: el cambio de modelo es configuración, no refactoring. Dada la velocidad con que evoluciona el ecosistema de modelos de código abierto, la elección específica puede revisarse durante el desarrollo sin impacto estructural en el sistema.
+\item \textbf{Docker} (contenedores) --- estándar de facto para containerización; garantiza reproducibilidad entre entornos de desarrollo, prueba y producción, y simplifica el despliegue en cualquier infraestructura.
 \end{itemize}
 
 \textbf{Privacidad:} Los datos sensibles de los estudiantes no son

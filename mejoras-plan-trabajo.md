@@ -30,7 +30,6 @@ Items a resolver antes del envío formal.
 ## Objetivos específicos
 
 - [x] **8. Completar los objetivos específicos** — incluir: casos de uso concretos, enfoque técnico adoptado (prompting → Text-to-SQL → RAG), modelos y licencias considerados.
-- [x] **9. Mencionar amenazas y limitaciones de la IA** — reconocer riesgos (alucinación, naturaleza aproximada, sesgo) y cómo se mitigan. No solo decir "la alucinación es baja".
 - [~] **10. Agregar plan de contingencia para dependencia de servicios externos** — descartado: el tema ya está cubierto en §3.4 (modelos self-hosted) y en §4 (objetivo de independencia de proveedor).
 
 ## Modelo self-hosted
@@ -39,5 +38,5 @@ Items a resolver antes del envío formal.
 
 ## Estructura y formato
 
-- [ ] **12. Convertir las fases de viñetas a párrafos** — descripción más abstracta y orientada a público académico heterogéneo. Menos detalle técnico, más intención y propósito de cada etapa.
+- [x] **12. Convertir las fases de viñetas a párrafos** — descripción más abstracta y orientada a público académico heterogéneo. Menos detalle técnico, más intención y propósito de cada etapa.
 - [ ] **13. Nombres de las fases (Asimov)** — no tocar por ahora. Esperar feedback de la comisión. Si hay señales de que puede ser un problema, agregar nota explicativa breve al inicio de la sección.
