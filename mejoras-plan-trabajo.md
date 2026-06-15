@@ -39,4 +39,4 @@ Items a resolver antes del envío formal.
 ## Estructura y formato
 
 - [x] **12. Convertir las fases de viñetas a párrafos** — descripción más abstracta y orientada a público académico heterogéneo. Menos detalle técnico, más intención y propósito de cada etapa.
-- [ ] **13. Nombres de las fases (Asimov)** — no tocar por ahora. Esperar feedback de la comisión. Si hay señales de que puede ser un problema, agregar nota explicativa breve al inicio de la sección.
+- [x] **13. Nombres de las fases (Asimov)** — se agregó párrafo explicativo en §5 con `\begin{quote}`: psicohistoria, analogía con Académika, y vínculo con la Serie de Robots. Nombres de fases sin cambios.
