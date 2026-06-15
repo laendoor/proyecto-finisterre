@@ -13,8 +13,8 @@ Items a resolver antes del envío formal.
 
 ## Redacción y lenguaje
 
-- [ ] **1. Revisar lenguaje de género** — minimizar términos masculinizados genéricos en todo el documento. "Usuario" y "administrador" como términos técnicos aceptados quedan; el resto se revisa caso por caso.
-- [ ] **2. Reducir anglicismos** — revisar término por término y reemplazar con equivalente en castellano donde no se pierda precisión técnica.
+- [x] **1. Revisar lenguaje de género** — minimizar términos masculinizados genéricos en todo el documento. "Usuario" y "administrador" como términos técnicos aceptados quedan; el resto se revisa caso por caso.
+- [x] **2. Reducir anglicismos** — revisar término por término y reemplazar con equivalente en castellano donde no se pierda precisión técnica.
 
 ## Motivación / presentación del problema
 

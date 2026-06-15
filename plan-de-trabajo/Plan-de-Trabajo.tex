@@ -198,39 +198,15 @@ y se amplía año a año. Esta situación convierte la gestión de trayectorias
 estudiantiles en un problema urgente para el cual las herramientas
 disponibles actualmente no permiten realizar un análisis eficaz.
 
-En 2021, Juan Ignacio Yegro desarrolló como Seminario Final un prototipo
-avanzado de aplicación de seguimiento académico para estas
-carreras \citep{yegro2021}. Ese trabajo estableció un modelo de
-dominio sólido y un conjunto de métricas académicas relevantes,
-por ejemplo:
-
-\begin{itemize}
-\item Progresión por áreas y núcleos del plan
-  \begin{itemize}
-  \item Calcula el avance de un alumno segmentado por área temática y por núcleo académico (Introductoria, Básica, Avanzada, Complementaria), cruzando la estructura del plan curricular con sus cursadas.
-  \item Permite detectar progresos desbalanceados: por ejemplo, un alumno con 90\% del núcleo introductorio aprobado pero 0\% del núcleo avanzado.
-  \end{itemize}
-\item Score de criticidad de materias cuello de botella
-  \begin{itemize}
-  \item Combina la tasa de aprobación de una materia con la cantidad de materias que dependen transitivamente de ella, generando un índice de impacto curricular.
-  \item Por ejemplo, una materia con 30\% de aprobación de la que dependen 4 correlativas tiene mayor score de riesgo que una con 70\% de aprobación sin dependientes.
-  \end{itemize}
-\item Dispersión de desempeño reciente vs.\ histórico
-  \begin{itemize}
-  \item Compara el promedio acumulado histórico de cada alumno contra su rendimiento en el último período semestral, detectando caídas significativas como señal de riesgo de abandono.
-  \item Por ejemplo, un alumno con promedio histórico 7 y promedio reciente 4 es candidato a una intervención temprana.
-  \end{itemize}
-\end{itemize}
-
-A pesar de la utilidad de la aplicación el
-sistema no llegó a entrar en producción por falta de mantenimiento
-sostenido: sin recursos dedicados a su operación, el stack tecnológico
-quedó desactualizado antes de poder ser adoptado. El avance en
+En 2021, Juan Ignacio Yegro desarrolló como Seminario Final una aplicación
+de seguimiento académico para estas carreras \citep{yegro2021}, cuyo modelo
+de dominio y métricas analíticas constituyen el punto de partida de este trabajo
+(ver sección~\ref{trabajos-previos-en-la-unq}). El avance en
 inteligencia artificial ---en particular los modelos de lenguaje grandes
-(LLMs\footnote{Large Language Model: \url{https://en.wikipedia.org/wiki/Large_language_model}})
-y las técnicas de Retrieval-Augmented Generation
-(RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}})---
-abre hoy la posibilidad de retomar ese trabajo, extenderlo y construir sobre
+(LLM\footnote{Large Language Model: \url{https://en.wikipedia.org/wiki/Large_language_model}})
+y las técnicas de Generación Aumentada por Recuperación
+(RAG\footnote{Retrieval-Augmented Generation --- \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}})
+abren hoy la posibilidad de retomar ese trabajo, extenderlo y construir sobre
 sus cimientos una plataforma más potente y usable.
 
 Este plan de trabajo propone el diseño, desarrollo y validación de
@@ -326,10 +302,32 @@ Mientras tanto, los nuevos inscriptos se multiplicaron por 2,4 entre 2022 y 2024
 El antecedente directo más relevante es el trabajo de Juan Ignacio Yegro \citet{yegro2021},
 que desarrolló una aplicación de seguimiento académico para las carreras de
 informática de la UNQ con foco en métricas de trayectoria estudiantil y
-gestión de inscripciones. Usando como base del mencionado trabajo el modelo de
-dominio (Alumno, Carrera, Materia, Plan de Estudios) y las métricas
-analíticas como punto de partida, este trabajo extiende el enfoque hacia una
-interfaz conversacional basada en IA\footnote{Canal de interacción en lenguaje natural
+gestión de inscripciones. Ese trabajo estableció un modelo de dominio sólido
+(Alumno, Carrera, Materia, Plan de Estudios) y un conjunto de métricas académicas relevantes:
+
+\begin{itemize}
+\item Progresión por áreas y núcleos del plan
+  \begin{itemize}
+  \item Calcula el avance de un alumno segmentado por área temática y por núcleo académico (Introductoria, Básica, Avanzada, Complementaria), cruzando la estructura del plan curricular con sus cursadas.
+  \item Permite detectar progresos desbalanceados: por ejemplo, un alumno con 90\% del núcleo introductorio aprobado pero 0\% del núcleo avanzado.
+  \end{itemize}
+\item Score de criticidad de materias cuello de botella
+  \begin{itemize}
+  \item Combina la tasa de aprobación de una materia con la cantidad de materias que dependen transitivamente de ella, generando un índice de impacto curricular.
+  \item Por ejemplo, una materia con 30\% de aprobación de la que dependen 4 correlativas tiene mayor score de riesgo que una con 70\% de aprobación sin dependientes.
+  \end{itemize}
+\item Dispersión de desempeño reciente vs.\ histórico
+  \begin{itemize}
+  \item Compara el promedio acumulado histórico de cada alumno contra su rendimiento en el último período semestral, detectando caídas significativas como señal de riesgo de abandono.
+  \item Por ejemplo, un alumno con promedio histórico 7 y promedio reciente 4 es candidato a una intervención temprana.
+  \end{itemize}
+\end{itemize}
+
+A pesar de la utilidad de la aplicación, el sistema no llegó a entrar en producción
+por falta de mantenimiento sostenido: sin recursos dedicados a su operación,
+el stack tecnológico quedó desactualizado antes de poder ser adoptado.
+Usando ese modelo de dominio y esas métricas analíticas como punto de partida,
+este trabajo extiende el enfoque hacia una interfaz conversacional basada en IA\footnote{Canal de interacción en lenguaje natural
 ---similar a un chat--- donde el usuario formula preguntas en texto y
 la componente de inteligencia artificial las interpreta para generar respuestas
 a partir de los datos institucionales, sin que el usuario deba conocer
@@ -541,8 +539,7 @@ El enfoque conversacional evoluciona a lo largo de tres estrategias progresivas:
 (a)~anclaje por instrucción estricta, donde el contexto se provee explícitamente al modelo;
 (b)~Text-to-SQL, donde el modelo convierte consultas en lenguaje natural a SQL ejecutado
 directamente sobre los datos académicos;
-(c)~RAG\footnote{Generación Aumentada por Recuperación (Retrieval-Augmented Generation) --- \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}
-documental, donde el modelo recupera fragmentos relevantes de documentos institucionales
+(c)~RAG documental, donde el modelo recupera fragmentos relevantes de documentos institucionales
 (planes de estudio, programas de materias) antes de responder.
 
 \subsubsection*{Integrar un modelo de lenguaje sin re-entrenamiento}
