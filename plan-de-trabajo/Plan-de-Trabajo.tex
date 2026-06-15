@@ -239,6 +239,36 @@ académico, orientada a las direcciones y los equipos docentes de las carreras
 de informática de la UNQ como primera instancia, pero con potenciales
 usos en otras carreras.
 
+El término \emph{IA-nativa} refiere a una plataforma cuyo diseño gira en torno a la inteligencia artificial
+como mecanismo principal de interacción. Esto implica una interfaz conversacional donde el usuario
+formula preguntas en lenguaje natural pero también la capacidad de generar documentos pre-diseñados
+(informes de situación, resúmenes de trayectoria, planillas de datos) que pueden ser producidos
+a partir de opciones predefinidas. 
+
+Un principio central del diseño de este enfoque es que el sistema responde
+exclusivamente a partir de los datos institucionales disponibles,
+sin recurrir al conocimiento general del modelo. O sea, si la pregunta refiere
+a conocimiento que no es el definido en el dominio de la aplicación el sistema
+responde explícitamente que no puede comentar acerca de eso por no estar dentro de sus fuentes,
+en lugar de inventar una respuesta. Esto es lo que lo distingue fundamentalmente de asistentes
+de propósito general como ChatGPT\footnote{Asistente de inteligencia artificial de propósito general desarrollado por OpenAI. \url{https://chatgpt.com}}.
+
+La estrategia de no-alucinación planteada en este trabajo está inspirada en Google
+NotebookLM\footnote{Herramienta de análisis
+documental basada en IA que permite cargar fuentes propias y consultarlas en lenguaje natural;
+también genera artefactos como resúmenes y episodios de audio a partir de esas fuentes.
+A diferencia de un asistente de propósito general, responde exclusivamente desde el material
+cargado, sin recurrir a conocimiento externo. \url{https://notebooklm.google.com}}.
+En la herramienta de Google el usuario carga sus documentos fuente y luego puede hacer consultas
+sobre ese dominio. La interfaz conversacional de NotebookLM responde solo a partir de esos datos.
+Académika adopta la misma filosofía pero limitando al contexto institucional.
+
+Estos puntos son el diferencial con una aplicación tradicional de análisis, donde 
+la capacidad de respuesta está limitada a lo que se haya programado previamente.
+Una plataforma IA-nativa de este estilo permite explorar un abanico de funcionalidades
+mucho mayor (dentro de un dominio específico) sin que el desarrollador tenga que saber
+de antemano qué es lo que va a solicitar el usuario.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{Motivación}\label{motivacion}
@@ -271,7 +301,13 @@ pero no herramientas para interpretarlos.
 
 No existe por el momento una plataforma estandarizada que permita a las direcciones de
 carrera explorar sus datos en lenguaje natural, detectar estudiantes en
-riesgo o anticipar situaciones críticas antes de que escalen.
+riesgo o anticipar situaciones críticas antes de que escalen. Por ejemplo,
+preguntas como \textit{«¿cuántos estudiantes que ingresaron en 2021 aprobaron al
+menos el 50\% del plan de estudios?»}, \textit{«¿qué materias concentran la mayor cantidad de estudiantes
+que hayan recursado tres o más veces?»} o \textit{«¿cuántos alumnos habilitados para cada materia del
+Ciclo Básico hay proyectados para el próximo cuatrimestre?»} no tienen hoy respuesta
+disponible en ningún sistema institucional sin trabajo manual sobre planillas.
+Académika apunta a resolver este tipo de consultas en lenguaje natural y en tiempo real.
 
 El volumen del problema justifica la inversión: Como se mencionó en la Introducción,
 en 2024 la TPI registró 4.517 estudiantes y la LI 3.272 \citep{unq2025transparencia},

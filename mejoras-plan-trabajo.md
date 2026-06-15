@@ -23,9 +23,9 @@ Items a resolver antes del envío formal.
 
 ## Enfoque AI-first
 
-- [ ] **5. Explicar AI-first temprano en el documento** — aclarar qué significa y por qué ese enfoque resuelve el problema. No puede quedar implícito.
-- [ ] **6. Agregar ejemplos concretos de uso** — siguiendo propuesta de Mara: "con datos de la planilla X de SIU Guaraní, haciendo una pregunta en lenguaje natural como '...', se obtiene un informe '...' que hoy no está disponible en ningún sistema".
-- [ ] **7. Dejar claro el contraste IA vs. app tradicional** — una app tradicional define de antemano qué análisis puede hacer; AI-first lo deja abierto según la demanda de cada sector.
+- [x] **5. Explicar AI-first temprano en el documento** — aclarar qué significa y por qué ese enfoque resuelve el problema. No puede quedar implícito.
+- [x] **6. Agregar ejemplos concretos de uso** — siguiendo propuesta de Mara: "con datos de la planilla X de SIU Guaraní, haciendo una pregunta en lenguaje natural como '...', se obtiene un informe '...' que hoy no está disponible en ningún sistema".
+- [x] **7. Dejar claro el contraste IA vs. app tradicional** — una app tradicional define de antemano qué análisis puede hacer; AI-first lo deja abierto según la demanda de cada sector.
 
 ## Objetivos específicos
 
@@ -35,7 +35,7 @@ Items a resolver antes del envío formal.
 
 ## Modelo self-hosted
 
-- [~] **11. Research: modelos LLM livianos para self-hosting en infraestructura UNQ** — la UNQ probablemente no acepte requests a APIs externas (privacidad + costos). Evaluar opciones de modelos que puedan correr en hardware modesto (sin GPU dedicada, RAM acotada). Ver ítem 10 — la conclusión del research alimenta el plan de contingencia.
+- [x] **11. Research: modelos LLM livianos para self-hosting en infraestructura UNQ** — la UNQ probablemente no acepte requests a APIs externas (privacidad + costos). Evaluar opciones de modelos que puedan correr en hardware modesto (sin GPU dedicada, RAM acotada). Ver ítem 10 — la conclusión del research alimenta el plan de contingencia.
 
 ## Estructura y formato
 
