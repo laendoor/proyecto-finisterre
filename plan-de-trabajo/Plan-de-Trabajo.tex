@@ -476,11 +476,37 @@ una herramienta de código abierto que permite ejecutar modelos LLM en infraestr
 con una API compatible con los principales frameworks de desarrollo.
 
 Es importante aclarar que estas elecciones pueden ser modificadas durante el desarrollo si
-los resultados obtenidos no son lo suficientemente satisfactorios. Es por eso que 
+los resultados obtenidos no son lo suficientemente satisfactorios. Es por eso que
 la arquitectura del sistema busca permitir el intercambio de modelos desde la configuración.
-Esto permite evaluar distintas alternativas a medida que el sistema evolucione sin necesidad 
+Esto permite evaluar distintas alternativas a medida que el sistema evolucione sin necesidad
 de hacer modificaciones de código.
 
+\subsection{Limitaciones y riesgos de los modelos de lenguaje}\label{limitaciones-riesgos}
+
+Los modelos de lenguaje presentan limitaciones inherentes que deben reconocerse explícitamente
+en cualquier sistema que los utilice para producir información en contextos donde la precisión es crítica.
+
+El riesgo más conocido es el de \textbf{alucinación}: el modelo puede generar afirmaciones incorrectas
+o inventadas con la misma confianza con que produce respuestas verídicas, sin señalar su incertidumbre.
+Este riesgo se agrava cuando el modelo no tiene acceso a las fuentes correctas y recurre a su conocimiento general.
+
+Un segundo riesgo es la \textbf{naturaleza aproximada} de las respuestas: a diferencia de una consulta SQL
+que devuelve un resultado exacto y reproducible, una respuesta generada por un modelo de lenguaje es probabilística.
+Dos consultas idénticas pueden producir respuestas distintas,
+y el sistema no garantiza precisión numérica en sus afirmaciones.
+
+Finalmente, los modelos pueden reproducir \textbf{sesgos} presentes en sus datos de entrenamiento,
+lo que puede traducirse en interpretaciones distorsionadas si no se limita el alcance de las respuestas.
+
+El diseño de Académika aborda estos riesgos en capas:
+
+\begin{itemize}
+  \item El principio de anclaje restringe las respuestas a las fuentes provistas, reduciendo el margen de alucinación.
+  \item Text-to-SQL ejecuta consultas reales contra la base de datos: los resultados numéricos son exactos por construcción, no generados por el modelo.
+  \item El esquema de evaluación progresiva mide la calidad de las respuestas sobre un conjunto de consultas
+  canónicas validadas con las direcciones de carrera, permitiendo detectar y corregir comportamientos
+  incorrectos antes de la puesta en producción.
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -510,8 +536,7 @@ proyección de demanda por materia y análisis de riesgo de deserción.
 Estos casos representan las preguntas que hoy no tienen respuesta disponible en ningún sistema
 institucional sin trabajo manual.
 
-\subsubsection*{Implementar y evaluar tres estrategias complementarias de anclaje\footnote{
-Principio de diseño por el cual un sistema responde exclusivamente a partir de las fuentes provistas.}}
+\subsubsection*{Implementar y evaluar tres estrategias complementarias de anclaje}
 
 El enfoque conversacional evoluciona a lo largo de tres estrategias progresivas:
 (a)~anclaje por instrucción estricta, donde el contexto se provee explícitamente al modelo;

@@ -29,7 +29,7 @@ Items a resolver antes del envío formal.
 
 ## Objetivos específicos
 
-- [ ] **8. Completar los objetivos específicos** — incluir: casos de uso concretos, enfoque técnico adoptado (prompting → Text-to-SQL → RAG), modelos y licencias considerados.
+- [x] **8. Completar los objetivos específicos** — incluir: casos de uso concretos, enfoque técnico adoptado (prompting → Text-to-SQL → RAG), modelos y licencias considerados.
 - [ ] **9. Mencionar amenazas y limitaciones de la IA** — reconocer riesgos (alucinación, naturaleza aproximada, sesgo) y cómo se mitigan. No solo decir "la alucinación es baja".
 - [ ] **10. Agregar plan de contingencia para dependencia de servicios externos** — la comisión va a preguntar quién paga los requests, si la UNQ acepta enviar datos a un modelo externo, y si hay alternativa offline. Nombrar el plan B.
 
