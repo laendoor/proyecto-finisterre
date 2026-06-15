@@ -52,6 +52,9 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+\makesavenoteenv{tabular}
+\makesavenoteenv{tabular*}
+\usepackage{makecell}
 \ifLuaTeX
 \usepackage[bidi=basic,shorthands=off]{babel}
 \else
@@ -91,7 +94,7 @@
   pdfcreator={LaTeX via pandoc}}
 
 \title{Plan de Trabajo\\[0.5em]
-\large Académika como plataforma web AI-first para seguimiento académico}
+\large Académika como plataforma web IA-nativa para seguimiento académico}
 \author{Leandro J. Di Lorenzo Etchepare}
 \date{}
 
@@ -102,7 +105,7 @@
 \vspace*{1.5cm}
 \includegraphics[width=0.7\textwidth]{logo-unq.png}\\[2.5cm]
 {\LARGE\bfseries Plan de Trabajo}\\[1cm]
-{\Large Académika como plataforma web AI-first para seguimiento académico}\\[2.5cm]
+{\Large Académika como plataforma web IA-nativa para seguimiento académico}\\[2.5cm]
 \textbf{Autor:}     Leandro J. Di Lorenzo Etchepare \\[0.4em]
 \textbf{Directora:} Dra.\ Gabriela B. Arévalo
 \vfill
@@ -231,7 +234,7 @@ abre hoy la posibilidad de retomar ese trabajo, extenderlo y construir sobre
 sus cimientos una plataforma más potente y usable.
 
 Este plan de trabajo propone el diseño, desarrollo y validación de
-\textbf{Académika}: una plataforma web AI-first para el seguimiento
+\textbf{Académika}: una plataforma web IA-nativa para el seguimiento
 académico, orientada a las direcciones y los equipos docentes de las carreras
 de informática de la UNQ como primera instancia, pero con potenciales
 usos en otras carreras.
@@ -334,6 +337,114 @@ documental para reglamentos y programas,
 Text-to-SQL para datos académicos tabulares--- permite aplicar el
 mismo principio de grounding a la totalidad de la información relevante
 para las direcciones de carrera.
+
+\subsection{Modelos de lenguaje: panorama y criterios de selección}\label{modelos-de-lenguaje}
+
+El enfoque IA-nativo de Académika requiere integrar un modelo de lenguaje grande (LLM)
+como componente central del sistema.
+La elección del modelo no es trivial: está condicionada por necesidades institucionales,
+limitaciones técnicas y garantías de privacidad.
+
+Los servicios de mayor rendimiento están actualmente dominados por los modelos de OpenAI, Anthropic y Google.
+Estos modelos están disponibles únicamente a través de internet y mediante un sistema de pago por consumo.
+Pero en el contexto de este trabajo universitario esto genera dos problemas concretos: costos y privacidad.
+Es imperioso, por lo tanto, plantear alternativas de código abierto
+que permitan ser ejecutadas íntegramente dentro de la infraestructura de la Universidad.
+
+Desde hace un tiempo se vienen consolidando ecosistemas de modelos de lenguaje con
+licencias abiertas (o más permisivas) capaces de correr en infraestructura propia
+y con resultados muy satisfactorios. El abanico de propuestas es muy extenso y variado,
+con lo cual es conveniente explicar algunos conceptos previamente.
+
+El primer concepto tiene que ver con los \emph{parámetros}.
+En este contexto se le llama \emph{parámetros} a los valores numéricos que el modelo
+ajusta durante el entrenamiento y que determinan su comportamiento.
+Por ejemplo, un modelo denominado 8B significa que fue ajustado con
+8 billones\footnote{En los países de habla inglesa
+1-billón equivale a mil millones (1.000.000.000) mientras que es los países de habla hispana 1-billón
+equivale a un millón de millones (1.000.000.000.000). La equivalencia utilizada
+en los modelos de IA es la de habla inglesa} de parámetros.
+Del mismo modo, uno uno de 70B con 70 billones de parámetros.
+A mayor cantidad de parámetros, mayor capacidad de comprensión y razonamiento,
+pero también mayores requerimientos de memoria y cómputo.
+
+Otro concepto importante es la distinción entre CPU\footnote{Unidad Central de Procesamiento
+(\emph{Central Processing Unit}): el procesador principal de cualquier computadora,
+diseñado para ejecutar instrucciones de propósito general.}
+y GPU\footnote{Unidad de Procesamiento Gráfico (\emph{Graphics Processing Unit}):
+procesador especializado cuya arquitectura de procesamiento paralelo masivo lo hace especialmente
+eficiente para las operaciones matemáticas intensivas que requieren los modelos de inteligencia artificial.}.
+Los modelos más grandes requieren GPU para ejecutarse en tiempos razonables, mientras que los más pequeños
+pueden correr utilizando solamente la CPU convencional.
+Si bien lo hacen a menor velocidad, no requieren una infraestructura tan especializada.
+
+Las siguientes tablas listan las alternativas más representativas.
+En primer lugar se listan las opciones con menores parámetros y requerimientos,
+mientras que en la segunda se plantean modelos con mayores capacidades pero
+mayor necesidad de procesamiento.
+
+\medskip
+\noindent\textit{Sin necesidad de GPU:}
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllll@{}}
+\toprule
+\textbf{Desarrollador} & \textbf{Modelo} & \textbf{Parám.} & \textbf{Licencia} & \makecell[l]{\textbf{RAM}\\\textbf{mínima}} & \makecell[l]{\textbf{Manejo de}\\\textbf{Español}} \\
+\midrule
+Microsoft  & \textbf{Phi-4 Mini}   & 3,8B & MIT\footnote{MIT: Licencia permisiva que permite usar, modificar y redistribuir el software sin restricciones, incluyendo con fines comerciales, conservando el aviso de \emph{copyright} original. \url{https://opensource.org/license/mit}}        & 8 GB  & Regular   \\
+Google     & \textbf{Gemma 3 4B}   & 4B   & Gemma ToU\footnote{Gemma ToU: Términos de uso de Google para los modelos Gemma; permiten uso libre incluso comercial, con restricciones sobre redistribución como modelo base y usos que compitan directamente con servicios de Google. \url{https://ai.google.dev/gemma/terms}}  & 8 GB  & Bueno     \\
+Mistral AI & \textbf{Mistral 7B}   & 7B   & Apache 2.0\footnote{Apache 2.0: Licencia de código abierto que permite usar, modificar y redistribuir el software, incluyendo con fines comerciales, con la condición de incluir la licencia original y declarar explícitamente los cambios realizados. \url{https://www.apache.org/licenses/LICENSE-2.0}} & 12 GB & Bueno     \\
+Alibaba    & \textbf{Qwen3 8B}     & 8B   & Apache 2.0              & 16 GB & Muy bueno \\
+Meta       & \textbf{Llama 3.3 8B} & 8B   & Llama 3\footnote{Llama 3: Libre para proyectos con menos de 700 millones de usuarios activos mensuales. \url{https://llama.meta.com/llama3/license/}}    & 16 GB & Bueno \\
+\bottomrule
+\end{tabular*}}
+\end{center}
+
+\medskip
+\noindent\textit{Con necesidad de GPU:}
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.3}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llllll@{}}
+\toprule
+\textbf{Desarrollador} & \textbf{Modelo} & \textbf{Parám.} & \textbf{Licencia} & \makecell[l]{\textbf{VRAM}\\\textbf{mínima}} & \makecell[l]{\textbf{Manejo de}\\\textbf{Español}} \\
+\midrule
+Alibaba & \textbf{Qwen3 30B}     & 30B & Apache 2.0 & 16 GB & Muy bueno \\
+Meta    & \textbf{Llama 3.3 70B} & 70B & Llama 3    & 48 GB & Bueno     \\
+Alibaba & \textbf{Qwen3 72B}     & 72B & Apache 2.0 & 48 GB & Muy bueno \\
+\bottomrule
+\end{tabular*}}
+\end{center}
+
+\medskip
+
+\subsubsection*{Criterios de selección de modelo}
+
+Los factores trascendentales al momento de elegir un alternativa se basan en varios factores:
+
+\begin{itemize}
+  \item La \emph{licencia} debe ser suficientemente permisiva para uso institucional sin fines de lucro
+  \item El \emph{hardware requerido} no debe requerir GPU
+  \item El \emph{manejo de español} es crítico para lograr respuestas aceptables
+  \item La \emph{capacidad de razonamiento} es relevante para la calidad de procesamiento
+\end{itemize}
+
+A partir de lo expuesto, la elección inicial de modelo para este trabajo pretender ser \textbf{Qwen3 8B} de Alibaba.
+Este modelo no necesita GPU, tiene licencia Apache 2.0 (la más adecuada de todas las listadas),
+el manejo del idioma español es muy bueno y las capacidades de razonamiento son superiores a otros
+de similares características.
+
+Como servidor de inferencia local se pretende utilizar \textbf{Ollama}\footnote{\url{https://ollama.com}},
+una herramienta de código abierto que permite ejecutar modelos LLM en infraestructura propia
+con una API compatible con los principales frameworks de desarrollo.
+
+Es importante aclarar que estas elecciones pueden ser modificadas durante el desarrollo si
+los resultados obtenidos no son lo suficientemente satisfactorios. Es por eso que 
+la arquitectura del sistema busca permitir el intercambio de modelos desde la configuración.
+Esto permite evaluar distintas alternativas a medida que el sistema evolucione sin necesidad 
+de hacer modificaciones de código.
+
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -502,7 +613,7 @@ de lenguaje sin modificar el resto del sistema.
 \item \textbf{Next.js + React} (frontend web) --- SSR nativo, ecosistema de componentes amplio, soporte para interfaces reactivas e interactivas.
 \item \textbf{PostgreSQL + pgvector} (base de datos) --- estándar de facto para datos relacionales en entornos académicos e institucionales; pgvector habilita búsqueda semántica por similitud en la misma base, sin infraestructura adicional.
 \item \textbf{LlamaIndex} (motor RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}) --- especializado en ingesta de datos y recuperación semántica; abstrae chunking, embedding e indexado, permitiendo evaluar distintas estrategias de retrieval sin reescribir la capa de integración. Más idiomático para casos RAG-first que alternativas de propósito general como LangChain\footnote{\url{https://www.langchain.com}}.
-\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Claude API en desarrollo (familiaridad y velocidad de iteración); arquitectura swappable por diseño --- el cambio de modelo es configuración, no refactoring. Se evaluará la factibilidad de correr modelos abiertos (Llama, Mistral vía Ollama) en la infraestructura de la UNQ.
+\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Claude API durante el desarrollo (familiaridad y velocidad de iteración); Ollama\footnote{\url{https://ollama.com}} como servidor de inferencia para producción, con Qwen3 8B\footnote{\url{https://huggingface.co/Qwen/Qwen3-8B}} como modelo seleccionado según el análisis de la sección~\ref{modelos-de-lenguaje}. La arquitectura es \emph{swappable} por diseño: el cambio de modelo es configuración, no refactoring. Dada la velocidad con que evoluciona el ecosistema de modelos de código abierto, la elección específica puede revisarse durante el desarrollo sin impacto estructural en el sistema.
 \item \textbf{Docker} (contenedores) --- estándar de facto para containerización; garantiza reproducibilidad entre entornos de desarrollo, prueba y producción, y simplifica el deploy en cualquier infraestructura.
 \end{itemize}
 
