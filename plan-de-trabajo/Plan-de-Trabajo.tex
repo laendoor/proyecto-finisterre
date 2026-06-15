@@ -122,6 +122,8 @@ Abril, 2026
 
 \section{Introducción}\label{introducciuxf3n}
 
+\subsection{Contexto y caso de estudio}\label{contexto-caso-estudio}
+
 Durante cada cuatrimestre las instituciones educativas generan volúmenes crecientes de datos
 académicos (inscripciones, cursadas, aprobaciones, trayectorias estudiantiles) que, en
 la práctica, resultan difíciles de aprovechar para producir información útil para la gestión académica. 
@@ -132,10 +134,11 @@ permiten registrar y consultar dichos datos, pero ofrecen herramientas limitadas
 En consecuencia, quienes toman decisiones sobre carreras y materias deben desarrollar herramientas de análisis
 ad-hoc trabajando con información fragmentada o de difícil acceso en tiempo real.
 
-Esta problemática se reproduce también en las carreras de informática del
-Departamento de Ciencia y Tecnología de la Universidad Nacional de Quilmes (DCyT-UNQ).
-Las carreras Licenciatura en Informática (LI) y Tecnicatura Universitaria en Programación Informática (TPI) concentran
-la matrícula más numerosa de la Universidad. Según catálogos de datos abiertos del 
+Como caso de estudio representativo de esta problemática, este trabajo toma las
+carreras de informática del Departamento de Ciencia y Tecnología de la Universidad
+Nacional de Quilmes (DCyT-UNQ): la Licenciatura en Informática (LI) y la Tecnicatura
+Universitaria en Programación Informática (TPI), que concentran la matrícula más numerosa
+de la Universidad. Según catálogos de datos abiertos del
 Portal de Transparencia de la UNQ \citep{unq2025transparencia}, en 2024 la carrera de TPI
 registró 4.517 estudiantes y la de LI 3.272, sumando entre ambas 7.789 alumnos regulares.
 Este número representa un 18\% más de alumnos que la suma de las tres carreras siguientes.
@@ -209,11 +212,14 @@ y las técnicas de Generación Aumentada por Recuperación
 abren hoy la posibilidad de retomar ese trabajo, extenderlo y construir sobre
 sus cimientos una plataforma más potente y usable.
 
+\subsection{La propuesta}\label{la-propuesta}
+
 Este plan de trabajo propone el diseño, desarrollo y validación de
 \textbf{Académika}: una plataforma web IA-nativa para el seguimiento
-académico, orientada a las direcciones y los equipos docentes de las carreras
-de informática de la UNQ como primera instancia, pero con potenciales
-usos en otras carreras.
+académico orientada a las direcciones de carrera y los equipos docentes.
+El caso de estudio son las carreras de informática de la UNQ, pero
+la arquitectura está diseñada para ser adoptable en cualquier institución
+que utilice SIU Guaraní como sistema de gestión académica.
 
 El término \emph{IA-nativa} refiere a una plataforma cuyo diseño gira en torno a la inteligencia artificial
 como mecanismo principal de interacción. Esto implica una interfaz conversacional donde el usuario

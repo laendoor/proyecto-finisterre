@@ -18,8 +18,8 @@ Items a resolver antes del envío formal.
 
 ## Motivación / presentación del problema
 
-- [ ] **3. Reencuadrar los datos de ingreso/egreso** — no eliminarlos, pero ajustar el enfoque para que no suenen a diagnóstico específico de LI/TPI. Usarlos como disparador de una necesidad más general y extrapolable.
-- [ ] **4. Visibilizar la potencialidad generalizadora** — dejar explícito que la propuesta es aplicable en cualquier espacio educativo, más allá de las dos carreras de la UNQ.
+- [x] **3. Reencuadrar los datos de ingreso/egreso** — no eliminarlos, pero ajustar el enfoque para que no suenen a diagnóstico específico de LI/TPI. Usarlos como disparador de una necesidad más general y extrapolable.
+- [x] **4. Visibilizar la potencialidad generalizadora** — dejar explícito que la propuesta es aplicable en cualquier espacio educativo, más allá de las dos carreras de la UNQ.
 
 ## Enfoque AI-first
 
