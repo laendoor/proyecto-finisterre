@@ -122,7 +122,7 @@ Abril, 2026
 
 \section{Introducción}\label{introducciuxf3n}
 
-\subsection{Contexto y caso de estudio}\label{contexto-caso-estudio}
+\subsection{Contexto}\label{contexto-caso-estudio}
 
 Durante cada cuatrimestre las instituciones educativas generan volúmenes crecientes de datos
 académicos (inscripciones, cursadas, aprobaciones, trayectorias estudiantiles) que, en
@@ -135,13 +135,17 @@ En consecuencia, quienes toman decisiones sobre carreras y materias deben desarr
 ad-hoc trabajando con información fragmentada o de difícil acceso en tiempo real.
 
 Como caso de estudio representativo de esta problemática, este trabajo toma las
-carreras de informática del Departamento de Ciencia y Tecnología de la Universidad
-Nacional de Quilmes (DCyT-UNQ): la Licenciatura en Informática (LI) y la Tecnicatura
-Universitaria en Programación Informática (TPI), que concentran la matrícula más numerosa
-de la Universidad. Según catálogos de datos abiertos del
-Portal de Transparencia de la UNQ \citep{unq2025transparencia}, en 2024 la carrera de TPI
-registró 4.517 estudiantes y la de LI 3.272, sumando entre ambas 7.789 alumnos regulares.
+carreras de Licenciatura en Informática (LI) y Tecnicatura
+Universitaria en Programación Informática (TPI) del Departamento de Ciencia y
+Tecnología de la Universidad Nacional de Quilmes (DCyT-UNQ) por ser
+las carreras que concentran la matrícula más numerosa
+de la Universidad según los datos públicos del
+Portal de Transparencia de la UNQ \citep{unq2025transparencia}.
+En 2024 la carrera de TPI registró 4.517 estudiantes y la de LI 3.272, sumando entre ambas 7.789 alumnos regulares.
 Este número representa un 18\% más de alumnos que la suma de las tres carreras siguientes.
+
+\pagebreak
+
 La siguiente tabla muestra el crecimiento de los últimos años de las carreras más populares de la UNQ:
 
 {\def\LTcaptype{none} % do not increment counter
@@ -163,13 +167,15 @@ La siguiente tabla muestra el crecimiento de los últimos años de las carreras 
 }
 
 
-El crecimiento ha sido sostenido y acelerado: mientras que en 2016 TPI + LI
-sumaban 1.121 estudiantes, en 2024 la matrícula registraba 7.789, es decir,
+Los datos reflejan que el crecimiento ha sido sostenido y acelerado: mientras que en 2016 TPI + LI
+sumaban 1.121 estudiantes, en 2024 la matrícula registraba 7.789. Es decir,
 casi siete veces más alumnos en un período de ocho años.
-Sin embargo el número de los egresos no crece al mismo ritmo: en 2024
-las dos carreras sumaron 55 egresados contra 3.040 nuevos inscriptos,
-como se puede observar en la tabla siguiente a partir de los datos obtenidos
-del Portal de Transparencia de la UNQ \citep{unq2025transparencia}:
+Sin embargo, el número de los egresos no crece al mismo ritmo que los ingresos,
+dado que, por tomar un ejemplo, en 2024 las dos carreras sumaron 55 egresados contra 3.040 nuevos inscriptos.
+
+En la tabla que se muestra a continuación, a partir de los datos obtenidos
+del Portal de Transparencia de la UNQ \citep{unq2025transparencia}
+se puede observar la relación de ingresos y egresos en las carreras de informática:
 
 \phantomsection\label{tab:ni-egresados}
 {\def\LTcaptype{none} % do not increment counter
@@ -184,15 +190,13 @@ Año & TPI & LI & \textbf{TPI+LI} & TPI & LI & \textbf{TPI+LI} \\
 \endlastfoot
 2007 &   41  &     - &    \textbf{41} &  - &  - &  \textbf{-} \\
 2012 &   113 &     - &   \textbf{113} &  2 &  - &  \textbf{2} \\
-2014 &   102 &    94 &   \textbf{196} &  1 &  - &  \textbf{1} \\
 2016 &   302 &   337 &   \textbf{639} & 12 &  - & \textbf{12} \\
-2018 &   322 &   321 &   \textbf{643} & 21 &  - & \textbf{21} \\
 2020 &   447 &   397 &   \textbf{844} & 22 &  - & \textbf{22} \\
 2021 &   395 &   308 &   \textbf{703} & 18 &  2 & \textbf{20} \\
 2022 &   797 &   484 & \textbf{1.281} & 25 &  3 & \textbf{28} \\
 2023 & 2.093 & 1.248 & \textbf{3.341} & 38 &  9 & \textbf{47} \\
 2024 & 1.788 & 1.252 & \textbf{3.040} & 36 & 19 & \textbf{55} \\
-2025\footnote{En cierre de inscripciones en 2025 fue efectivo para nuevos ingresantes pero se permitió la inscripción en simultaneidad de carreras para alumnos regulares de la UNQ} &   418 &   304 &   \textbf{722} &  7 &  5 & \textbf{12} \\
+2025\footnote{En cierre de inscripciones en 2025 fue efectivo para nuevos ingresos pero se permitió la inscripción en simultaneidad de carreras para alumnos regulares de la UNQ} &   418 &   304 &   \textbf{722} &  7 &  5 & \textbf{12} \\
 \end{longtable}
 }
 
@@ -208,11 +212,11 @@ de dominio y métricas analíticas constituyen el punto de partida de este traba
 inteligencia artificial ---en particular los modelos de lenguaje grandes
 (LLM\footnote{Large Language Model: \url{https://en.wikipedia.org/wiki/Large_language_model}})
 y las técnicas de Generación Aumentada por Recuperación
-(RAG\footnote{Retrieval-Augmented Generation --- \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}})
+(RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}})---
 abren hoy la posibilidad de retomar ese trabajo, extenderlo y construir sobre
 sus cimientos una plataforma más potente y usable.
 
-\subsection{La propuesta}\label{la-propuesta}
+\subsection{Propuesta}\label{la-propuesta}
 
 Este plan de trabajo propone el diseño, desarrollo y validación de
 \textbf{Académika}: una plataforma web IA-nativa para el seguimiento
@@ -223,7 +227,7 @@ que utilice SIU Guaraní como sistema de gestión académica.
 
 El término \emph{IA-nativa} refiere a una plataforma cuyo diseño gira en torno a la inteligencia artificial
 como mecanismo principal de interacción. Esto implica una interfaz conversacional donde el usuario
-formula preguntas en lenguaje natural pero también la capacidad de generar documentos pre-diseñados
+formula preguntas en lenguaje natural pero también tiene la capacidad de generar documentos pre-diseñados
 (informes de situación, resúmenes de trayectoria, planillas de datos) que pueden ser producidos
 a partir de opciones predefinidas. 
 
@@ -255,7 +259,7 @@ proveer de antemano lo que va a solicitar el usuario.
 
 \section{Motivación}\label{motivacion}
 
-A partir de entrevistas con diferentes direcciones de carreras
+A partir de entrevistas las direcciones de carreras de informática
 se identificaron tres tipos de momentos de decisión con características
 y necesidades de información distintivas:
 
@@ -290,14 +294,6 @@ que hayan recursado tres o más veces?»} o \textit{«¿cuántos alumnos habilit
 Ciclo Básico hay proyectados para el próximo cuatrimestre?»} no tienen hoy respuesta
 disponible en ningún sistema institucional sin trabajo manual sobre planillas.
 Académika apunta a resolver este tipo de consultas en lenguaje natural y en tiempo real.
-
-El volumen del problema justifica la inversión: Como se mencionó en la Introducción,
-en 2024 la TPI registró 4.517 estudiantes y la LI 3.272 \citep{unq2025transparencia},
-siendo las dos carreras con más alumnos de la UNQ.
-Y la tasa de egresos es estructuralmente baja: en 2024, de los 7.789 estudiantes activos
-entre ambas carreras, solo 55 se graduaron ---menos del 1\% de la matrícula total
-(ver~\hyperref[tab:ni-egresados]{tabla de inscriptos y egresados})---.
-Mientras tanto, los nuevos inscriptos se multiplicaron por 2,4 entre 2022 y 2024.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -361,10 +357,9 @@ y no ofrece resolver consultas bajo demanda o de manera dinámica.
 \subsection{Aplicaciones de IA conversacional en contextos de análisis de
 datos}\label{aplicaciones-de-ia-conversacional-en-contextos-de-anuxe1lisis-de-datos}
 
-Google NotebookLM\footnote{\url{https://notebooklm.google.com}} es la
-referencia más directa para el diseño de Académika. NotebookLM permite
-cargar documentos propios y consultarlos en lenguaje natural. El modelo
-responde exclusivamente a partir de las fuentes provistas, sin recurrir
+Google NotebookLM es la referencia más directa para el diseño de Académika.
+Este sistema permite cargar documentos propios y consultarlos en lenguaje natural.
+El modelo responde exclusivamente a partir de las fuentes provistas, sin recurrir
 a su conocimiento general. Este principio de \emph{anclaje contextual}
 ---responder solo a partir de los datos disponibles--- elimina el riesgo de
 respuestas incorrectas en dominios donde la precisión es crítica.
@@ -501,10 +496,12 @@ y el sistema no garantiza precisión numérica en sus afirmaciones.
 Finalmente, los modelos pueden reproducir \textbf{sesgos} presentes en sus datos de entrenamiento,
 lo que puede traducirse en interpretaciones distorsionadas si no se limita el alcance de las respuestas.
 
-El diseño de Académika aborda estos riesgos en capas:
+\pagebreak
+
+El diseño de Académika aborda estos riesgos mediante tres mecanismos: 
 
 \begin{itemize}
-  \item El principio de anclaje restringe las respuestas a las fuentes provistas, reduciendo el margen de alucinación.
+  \item El principio de anclaje contextual restringe las respuestas a las fuentes provistas, reduciendo el margen de alucinación.
   \item Text-to-SQL ejecuta consultas reales contra la base de datos: los resultados numéricos son exactos por construcción, no generados por el modelo.
   \item El esquema de evaluación progresiva mide la calidad de las respuestas sobre un conjunto de consultas
   canónicas validadas con las direcciones de carrera, permitiendo detectar y corregir comportamientos
@@ -542,7 +539,7 @@ institucional sin trabajo manual.
 \subsubsection*{Implementar y evaluar tres estrategias complementarias de anclaje}
 
 El enfoque conversacional evoluciona a lo largo de tres estrategias progresivas:
-(a)~anclaje por instrucción estricta, donde el contexto se provee explícitamente al modelo;
+(a)~anclaje por instrucciones estrictas, donde el contexto se provee explícitamente al modelo;
 (b)~Text-to-SQL, donde el modelo convierte consultas en lenguaje natural a SQL ejecutado
 directamente sobre los datos académicos;
 (c)~RAG documental, donde el modelo recupera fragmentos relevantes de documentos institucionales
@@ -558,7 +555,7 @@ ni re-entrenamiento del modelo de lenguaje.
 Las técnicas empleadas ---instrucción directa, Text-to-SQL y RAG--- adaptan el comportamiento del modelo
 al dominio institucional sin modificar sus pesos.
 Esto permite mantener el sistema sin necesidad de aplicar técnicas especializada en aprendizaje automático,
-a la vez que genera la capacidad de intercambiar el modelo base por otro sin necesidad de re-entrenamiento.
+a la vez que genera la capacidad de intercambiar el modelo base por otro.
 
 \subsubsection*{Garantizar independencia de proveedor de modelo}
 
@@ -569,9 +566,6 @@ ejecutado localmente sobre infraestructura propia,
 aunque del sistema es diseñado de forma tal que sea posible
 intercambiar el modelo base para soportar otras alternativas,
 tanto locales como en la nube.
-
-Esto elimina la dependencia de un proveedor externo y el riesgo de cautividad tecnológica
-asociado a costos de API o cambios en los términos de servicio.
 
 \subsubsection*{Preservar la privacidad de datos académicos}
 
@@ -630,7 +624,7 @@ de \emph{psicohistoria}: una ciencia ficticia capaz de predecir el comportamient
 masas sociales mediante matemáticas complejas. La psicohistoria opera sobre poblaciones
 enormes y pierde precisión cuando se reduce a grupos pequeños o individuos particulares.
 
-Me resulta interesante la analogía con este trabajo, donde
+Se vuelve interesante la analogía con este trabajo, donde
 Académika puede aportar el análisis de los comportamientos
 de cientos de estudiantes revelando patrones académicos
 que quizás son invisibles a nivel individual.
@@ -641,27 +635,25 @@ con las famosas tres leyes de la robótica\footnote{\url{https://es.wikipedia.or
 en la era de la Fundación los robots fueron desactivados por el peligro que
 generaron al saltarse estas leyes.
 
-El paralelismo ficticio me resulta muy interesante en relación a los debates actuales
-acerca de los usos y problemáticas de la IA a partir del auge de los modelos
+El paralelismo con la ficción resulta muy atractivo en relación a los debates actuales
+acerca de los usos y problemáticas de la IA, sobre todo a partir del auge de los modelos
 grandes de propósito general.}
 \end{quote}
 
-\subsection{Principio de diseño: anclaje contextual}\label{principio-de-diseno-anclaje}
+\subsection{Principio de diseño}\label{principio-de-diseno-anclaje}
 
 El asistente conversacional responde exclusivamente a partir de las fuentes provistas ---
 datos académicos importados del SIU Guaraní y documentos institucionales ---
 sin recurrir al conocimiento general del modelo de lenguaje.
-Esta restricción, análoga al diseño de NotebookLM\footnote{\url{https://notebooklm.google.com}},
-reduce el riesgo de respuestas incorrectas (\emph{alucinaciones}\footnote{Fenómeno por el cual
-un modelo de lenguaje produce afirmaciones incorrectas o inventadas presentándolas con la misma
-confianza que información verídica, sin señalar su incertidumbre.}) en un dominio donde la precisión es crítica.
+Esta restricción, análoga al diseño de NotebookLM,
+reduce el riesgo de alucinaciones en un dominio donde la precisión es crítica.
 El mecanismo de anclaje evoluciona progresivamente a lo largo de las fases.
 
 \subsection{Proceso de desarrollo}\label{proceso-de-desarrollo}
 
-\textbf{Fase 1} --- \emph{Preludio a la Fundación}
+\textbf{Fase 1:} \emph{Preludio a la Fundación}
 
-\emph{Objetivo:} Establecer las bases conceptuales y técnicas del proyecto y producir el plan de trabajo.
+\textbf{Objetivo:} Establecer las bases conceptuales y técnicas del proyecto y producir el plan de trabajo.
 
 La primera fase establece los cimientos del proyecto. A partir de entrevistas con las direcciones de carrera
 se identifican los requerimientos y los tipos de consultas que el sistema debe responder.
@@ -669,9 +661,9 @@ En paralelo, se releva la estructura de los datos disponibles en el SIU Guaraní
 el modelo de dominio y el esquema de privacidad que guiarán el desarrollo.
 La fase concluye con la entrega del plan de trabajo.
 
-\textbf{Fase 2} --- \emph{Hacia la Fundación}
+\textbf{Fase 2:} \emph{Hacia la Fundación}
 
-\emph{Objetivo:} Plataforma base funcional y desplegada en producción, sin componentes de IA.
+\textbf{Objetivo:} Plataforma base funcional y desplegada en producción, sin componentes de IA.
 
 La segunda fase construye la plataforma base sobre la que se apoyará todo el desarrollo posterior.
 Se implementan los componentes fundamentales del sistema ---autenticación, modelo de usuarios y roles,
@@ -679,9 +671,9 @@ modelo de dominio y API REST--- y se establece una interfaz web inicial.
 Al mismo tiempo, la plataforma se despliega en producción de manera temprana con integración continua
 y contenedores para validar la infraestructura antes de incorporar componentes más complejos.
 
-\textbf{Fase 3} --- \emph{Fundación}
+\textbf{Fase 3:} \emph{Fundación}
 
-\emph{Objetivo:} Incorporar datos reales del SIU Guaraní y exponer métricas académicas a través de un panel analítico.
+\textbf{Objetivo:} Incorporar datos reales del SIU Guaraní y exponer métricas académicas a través de un panel analítico.
 
 La tercera fase incorpora los datos reales del SIU Guaraní mediante un flujo de ingesta
 con etapas de normalización y control de privacidad.
@@ -690,9 +682,9 @@ Sobre esos datos se construye un motor analítico que computa métricas académi
 y las expone a través de un panel de visualización.
 Esta fase representa la primera versión del sistema con valor concreto para las direcciones de carrera.
 
-\textbf{Fase 4} --- \emph{Fundación e Imperio}
+\textbf{Fase 4:} \emph{Fundación e Imperio}
 
-\emph{Objetivo:} Primera versión con asistente conversacional diseñado con anclaje por instrucciones estrictas.
+\textbf{Objetivo:} Primera versión con asistente conversacional diseñado con anclaje por instrucciones estrictas.
 
 La cuarta fase introduce el asistente conversacional como componente central del sistema.
 En esta versión el modelo de lenguaje responde exclusivamente a partir de datos académicos
@@ -702,9 +694,9 @@ El asistente se integra con el motor analítico de la fase anterior, invocando s
 Se establece además la infraestructura de evaluación que permitirá medir y comparar
 la calidad de las respuestas en fases sucesivas.
 
-\textbf{Fase 5} --- \emph{Segunda Fundación}
+\textbf{Fase 5:} \emph{Segunda Fundación}
 
-\emph{Objetivo:} Incorporar Text-to-SQL al asistente con con diseño de anclaje estructural.
+\textbf{Objetivo:} Incorporar Text-to-SQL al asistente con con diseño de anclaje estructural.
 
 La quinta fase extiende las capacidades del asistente mediante Text-to-SQL:
 el modelo convierte preguntas en lenguaje natural a consultas SQL que se ejecutan
@@ -713,9 +705,9 @@ Este mecanismo amplía el repertorio de consultas posibles más allá de las mé
 del motor analítico y garantiza la exactitud numérica de las respuestas por construcción.
 El anclaje ya no depende solo de la instrucción sino de la ejecución efectiva contra datos reales.
 
-\textbf{Fase 6} --- \emph{Los límites de la Fundación}
+\textbf{Fase 6:} \emph{Los límites de la Fundación}
 
-\emph{Objetivo:} Incorporar recuperación documental y orquestación con diseño de anclaje unificado.
+\textbf{Objetivo:} Incorporar recuperación documental y orquestación con diseño de anclaje unificado.
 
 La sexta fase incorpora la recuperación de información documental (RAG):
 los documentos institucionales ---reglamentos, programas de materias--- son indexados semánticamente
@@ -725,9 +717,9 @@ se implementa una capa de orquestación que determina automáticamente qué comb
 aplicar según el tipo de consulta recibida.
 El sistema queda así completo en sus capacidades de respuesta.
 
-\textbf{Fase 7} --- \emph{Fundación y Tierra}
+\textbf{Fase 7:} \emph{Fundación y Tierra}
 
-\emph{Objetivo:} Validación, evaluación comparativa de estrategias, informe y defensa.
+\textbf{Objetivo:} Validación, evaluación comparativa de estrategias, informe y defensa.
 
 La séptima fase evalúa el sistema de manera integral.
 Se realiza una evaluación comparativa de las tres estrategias de anclaje
@@ -738,13 +730,13 @@ Son cierre de esta fase la evaluación de respuestas, la estabilización final d
 la redacción del informe y la defensa del trabajo.
 
 
-\subsection{Stack tecnológico principal}\label{stack-tecnologico-principal}
+\subsection{Stack tecnológico}\label{stack-tecnologico-principal}
 
 La selección de tecnologías está
-guiada por tres criterios: madurez del ecosistema para el dominio
+guiada por estos criterios: ecosistema técnico extendido para el tipo dominio
 estadístico-analítico, compatibilidad con los requerimientos de
-privacidad y ofuscación de datos, y posibilidad de reemplazar el modelo
-de lenguaje sin modificar el resto del sistema.
+privacidad, ofuscación de datos y la posibilidad de reemplazar el modelo
+de lenguaje sin necesidad de modificar el resto del sistema.
 
 \begin{itemize}
 \item \textbf{Python} (backend y análisis de datos) --- mayor adopción en la comunidad científica y de datos; ecosistema maduro para estadística, procesamiento de lenguaje natural y aprendizaje automático (pandas, NumPy, scikit-learn).
@@ -752,7 +744,7 @@ de lenguaje sin modificar el resto del sistema.
 \item \textbf{Next.js + React} (frontend web) --- SSR nativo, ecosistema de componentes amplio, soporte para interfaces reactivas e interactivas.
 \item \textbf{PostgreSQL + pgvector} (base de datos) --- estándar de facto para datos relacionales en entornos académicos e institucionales; pgvector habilita búsqueda semántica por similitud en la misma base, sin infraestructura adicional.
 \item \textbf{LlamaIndex} (motor RAG\footnote{Retrieval-Augmented Generation: \url{https://en.wikipedia.org/wiki/Retrieval-augmented_generation}}) --- especializado en ingesta de datos y recuperación semántica; abstrae segmentación de documentos, representación vectorial e indexado, permitiendo evaluar distintas estrategias de recuperación sin reescribir la capa de integración. Más idiomático para casos RAG-first que alternativas de propósito general como LangChain\footnote{\url{https://www.langchain.com}}.
-\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Claude API durante el desarrollo (familiaridad y velocidad de iteración); Ollama\footnote{\url{https://ollama.com}} como servidor de inferencia para producción, con Qwen3 8B\footnote{\url{https://huggingface.co/Qwen/Qwen3-8B}} como modelo seleccionado según el análisis de la sección~\ref{modelos-de-lenguaje}. La arquitectura es intercambiable por diseño: el cambio de modelo es configuración, no refactorización. Dada la velocidad con que evoluciona el ecosistema de modelos de código abierto, la elección específica puede revisarse durante el desarrollo sin impacto estructural en el sistema.
+\item \textbf{Modelo de lenguaje} (núcleo del asistente) --- Ollama\footnote{\url{https://ollama.com}} como servidor de inferencia, con Qwen3 8B\footnote{\url{https://huggingface.co/Qwen/Qwen3-8B}} como modelo seleccionado según el análisis de la sección~\ref{modelos-de-lenguaje}. La arquitectura es intercambiable por diseño: el cambio de modelo es configuración, no refactorización. Dada la velocidad con que evoluciona el ecosistema de modelos de código abierto, la elección específica puede revisarse durante el desarrollo sin impacto estructural en el sistema.
 \item \textbf{Docker} (contenedores) --- estándar de facto para contenedores; garantiza reproducibilidad entre entornos de desarrollo, prueba y producción, y simplifica el despliegue en cualquier infraestructura.
 \end{itemize}
 
