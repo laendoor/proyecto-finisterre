@@ -11,3 +11,4 @@ Formato: [ADR (Architecture Decision Record)](https://adr.github.io/).
 | [004](ADR-004-criterios-anonimizacion-guarani.md) | Criterios de anonimización en anon_guarani.py                    | Aceptado | 2026-04-13 |
 | [005](ADR-005-workflow-desarrollo-academika.md)   | Workflow de desarrollo y estructura del repositorio de Académika | Aceptado | 2026-04-13 |
 | [006](ADR-006-modelo-de-datos-en-castellano.md)   | Modelo de datos en castellano                                    | Aceptado | 2026-06-08 |
+| [007](ADR-007-politica-borrado-usuarios.md)       | Política de borrado de usuarios                                  | Aceptado | 2026-09-24 |

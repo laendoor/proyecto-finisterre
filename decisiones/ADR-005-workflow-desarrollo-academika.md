@@ -20,7 +20,7 @@ desarrollo profesional. El CI es el principal punto de calidad.
 ```txt
 academika/
 ├── api/        # FastAPI — backend Python
-├── ui/         # Next.js — frontend TypeScript
+├── web/        # Next.js — frontend TypeScript
 ├── docker-compose.dev.yml
 ├── docker-compose.yml
 ├── Makefile
@@ -41,10 +41,10 @@ Patrón consistente con proyectos anteriores de Lean. Cada subcarpeta tiene su p
 
 | Paso                      | Herramienta                          | Scope    |
 | ------------------------- | ------------------------------------ | -------- |
-| Lint                      | ruff (backend) + Biome (frontend)    | api/ ui/ |
-| Type checking             | pyright (backend) + tsc (frontend)   | api/ ui/ |
-| Unit + component tests    | pytest + vitest                      | api/ ui/ |
-| Coverage (unit+component) | codecov                              | api/ ui/ |
+| Lint                      | ruff (backend) + Biome (frontend)    | api/ web/ |
+| Type checking             | pyright (backend) + tsc (frontend)   | api/ web/ |
+| Unit + component tests    | pytest + vitest                      | api/ web/ |
+| Coverage (unit+component) | codecov                              | api/ web/ |
 | Integration tests         | pytest + testcontainers (PostgreSQL) | api/     |
 | Coverage (integration)    | codecov                              | api/     |
 
@@ -66,5 +66,5 @@ Playwright (e2e) postergado para v2, igual que en ADR-003.
   paralelos).
 - `/self-review` agrega un paso explícito de revisión antes de cada merge, útil como evidencia de
   proceso en el informe académico.
-- La separación `api/` + `ui/` permite que cada parte tenga su propio entorno de desarrollo y sus
+- La separación `api/` + `web/` permite que cada parte tenga su propio entorno de desarrollo y sus
   propios tests sin interferencia.
