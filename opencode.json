@@ -1,0 +1,46 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "references": {
+    "academika": {
+      "path": "../academika",
+      "description": "Código fuente de Académika — la app web desarrollada para este seminario"
+    },
+    "seminario": {
+      "path": "..",
+      "description": "Workspace raíz — STATUS.md, CLAUDE.md y config compartida"
+    }
+  },
+  "lsp": {
+    "texlab": {
+      "command": ["texlab"],
+      "extensions": [".tex"]
+    }
+  },
+  "formatter": {
+    "latexindent": {
+      "command": ["latexindent", "-w", "-s", "$FILE"],
+      "extensions": [".tex"]
+    }
+  },
+  "permission": {
+    "bash": {
+      "git push": "deny",
+      "git push *": "deny",
+      "git commit": "ask",
+      "git commit *": "ask",
+      "git merge": "ask",
+      "git merge *": "ask",
+      "git rebase": "ask",
+      "git rebase *": "ask",
+      "git reset": "ask",
+      "git reset *": "ask",
+      "git revert": "ask",
+      "git revert *": "ask",
+      "git rm": "ask",
+      "git rm *": "ask",
+      "git mv": "ask",
+      "git mv *": "ask"
+    }
+  }
+}

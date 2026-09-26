@@ -1,6 +1,9 @@
 # OS
 .DS_Store
 
+# AI assistants
+.opencode/
+
 # LaTeX build artifacts
 plan-de-trabajo/*.aux
 plan-de-trabajo/*.bbl
@@ -14,3 +17,7 @@ plan-de-trabajo/*.toc
 plan-de-trabajo/*.loc
 plan-de-trabajo/*.soc
 plan-de-trabajo/*.pdf
+
+# latexindent
+*.bak*
+indent.log
